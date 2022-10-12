@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="31" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="8" nextobjectid="610">
+ <tileset firstgid="1" name="classic" tilewidth="48" tileheight="48" tilecount="256" columns="16">
+  <image source="classic.png" trans="ff00ff" width="768" height="768"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="31" height="15" locked="1">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,7,7,7,7,7,7,7,7,7,6,7,7,7,7,7,7,7,7,7,6,7,7,7,7,7,7,7,7,7,6,
+6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,
+6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,6,
+6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,
+6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,6,
+6,6,6,7,6,7,6,7,6,7,6,6,6,7,6,7,6,7,6,6,6,7,6,7,6,7,6,7,6,6,6,
+6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,6,
+6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,
+6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,6,
+6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,7,6,
+6,7,7,7,7,7,7,7,7,7,6,7,7,7,7,7,7,7,7,7,6,7,7,7,7,7,7,7,7,7,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6
+</data>
+ </layer>
+ <objectgroup id="3" name="Items">
+  <object id="154" name="Item" type="speedItem" x="246" y="150" width="36" height="36"/>
+  <object id="156" name="Item" type="speedItem" x="486" y="534" width="36" height="36"/>
+  <object id="157" name="Item" type="speedItem" x="918" y="438" width="36" height="36"/>
+  <object id="158" name="Item" type="flameItem" x="1254" y="246" width="36" height="36"/>
+  <object id="160" name="Item" type="bombsItem" x="726" y="150" width="36" height="36"/>
+  <object id="161" name="Item" type="bombsItem" x="246" y="486" width="36" height="36"/>
+  <object id="162" name="Item" type="flamePassItem" x="54" y="630" width="36" height="36"/>
+  <object id="163" name="Item" type="flamePassItem" x="534" y="342" width="36" height="36"/>
+  <object id="164" name="Item" type="flamePassItem" x="726" y="582" width="36" height="36"/>
+  <object id="159" name="Item" type="flameItem" x="1062" y="630" width="36" height="36"/>
+  <object id="599" name="Item" type="portal" x="246" y="342" width="36" height="36"/>
+ </objectgroup>
+ <objectgroup id="6" name="Bricks">
+  <object id="528" name="brick" type="brick" x="48" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="530" name="brick" type="brick" x="240" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="531" name="brick" type="brick" x="240" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="532" name="brick" type="brick" x="528" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="533" name="brick" type="brick" x="480" y="528" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="534" name="brick" type="brick" x="720" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="535" name="brick" type="brick" x="912" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="536" name="brick" type="brick" x="720" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="537" name="brick" type="brick" x="1056" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="539" name="brick" type="brick" x="1248" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="540" name="brick" type="brick" x="48" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="541" name="brick" type="brick" x="144" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="542" name="brick" type="brick" x="96" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="543" name="brick" type="brick" x="144" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="544" name="brick" type="brick" x="48" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="545" name="brick" type="brick" x="144" y="528" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="546" name="brick" type="brick" x="240" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="547" name="brick" type="brick" x="336" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="548" name="brick" type="brick" x="432" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="549" name="brick" type="brick" x="384" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="550" name="brick" type="brick" x="432" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="551" name="brick" type="brick" x="384" y="528" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="552" name="brick" type="brick" x="240" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="553" name="brick" type="brick" x="624" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="554" name="brick" type="brick" x="480" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="555" name="brick" type="brick" x="576" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="556" name="brick" type="brick" x="528" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="558" name="brick" type="brick" x="528" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="559" name="brick" type="brick" x="528" y="528" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="560" name="brick" type="brick" x="720" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="561" name="brick" type="brick" x="720" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="562" name="brick" type="brick" x="672" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="563" name="brick" type="brick" x="768" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="564" name="brick" type="brick" x="720" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="565" name="brick" type="brick" x="816" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="566" name="brick" type="brick" x="960" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="567" name="brick" type="brick" x="912" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="568" name="brick" type="brick" x="864" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="569" name="brick" type="brick" x="816" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="570" name="brick" type="brick" x="912" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="571" name="brick" type="brick" x="912" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="572" name="brick" type="brick" x="1008" y="528" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="573" name="brick" type="brick" x="1056" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="574" name="brick" type="brick" x="1104" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="596" name="brick" type="brick" x="1200" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="597" name="brick" type="brick" x="1152" y="528" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="598" name="brick" type="brick" x="1200" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="575" name="brick" type="brick" x="1104" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="576" name="brick" type="brick" x="1104" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="577" name="brick" type="brick" x="1104" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="578" name="brick" type="brick" x="1152" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="579" name="brick" type="brick" x="1008" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="581" name="brick" type="brick" x="1248" y="528" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="582" name="brick" type="brick" x="1248" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="583" name="brick" type="brick" x="1344" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="584" name="brick" type="brick" x="1344" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="585" name="brick" type="brick" x="1296" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="586" name="brick" type="brick" x="1392" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="587" name="brick" type="brick" x="1296" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="588" name="brick" type="brick" x="240" y="240" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="589" name="brick" type="brick" x="336" y="432" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="590" name="brick" type="brick" x="336" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="591" name="brick" type="brick" x="336" y="336" width="48" height="48">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup id="2" name="Walls">
+  <object id="75" name="Player" type="player" x="48" y="144" width="48" height="48"/>
+  <object id="333" type="wall" x="96" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="334" type="wall" x="96" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="335" type="wall" x="96" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="336" type="wall" x="96" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="337" type="wall" x="96" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="338" type="wall" x="192" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="339" type="wall" x="192" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="340" type="wall" x="192" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="341" type="wall" x="192" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="342" type="wall" x="192" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="343" type="wall" x="288" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="344" type="wall" x="288" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="345" type="wall" x="288" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="346" type="wall" x="288" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="347" type="wall" x="288" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="348" type="wall" x="384" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="349" type="wall" x="384" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="350" type="wall" x="384" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="351" type="wall" x="384" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="352" type="wall" x="384" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="353" type="wall" x="480" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="354" type="wall" x="480" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="355" type="wall" x="480" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="356" type="wall" x="480" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="357" type="wall" x="480" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="602" type="wall" x="480" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="603" type="wall" x="48" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="604" type="wall" x="480" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="605" type="wall" x="960" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="606" type="wall" x="960" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="358" type="wall" x="576" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="359" type="wall" x="576" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="360" type="wall" x="576" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="607" type="wall" x="528" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="361" type="wall" x="576" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="362" type="wall" x="576" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="363" type="wall" x="672" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="364" type="wall" x="672" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="365" type="wall" x="672" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="366" type="wall" x="672" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="367" type="wall" x="672" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="368" type="wall" x="768" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="369" type="wall" x="768" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="370" type="wall" x="768" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="371" type="wall" x="768" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="372" type="wall" x="768" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="373" type="wall" x="864" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="374" type="wall" x="864" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="375" type="wall" x="864" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="376" type="wall" x="864" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="377" type="wall" x="864" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="379" type="wall" x="960" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="380" type="wall" x="960" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="381" type="wall" x="960" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="608" type="wall" x="912" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="382" type="wall" x="960" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="384" type="wall" x="960" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="385" type="wall" x="1056" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="386" type="wall" x="1056" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="387" type="wall" x="1056" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="388" type="wall" x="1056" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="389" type="wall" x="1056" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="390" type="wall" x="1152" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="391" type="wall" x="1152" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="392" type="wall" x="1152" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="393" type="wall" x="1152" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="394" type="wall" x="1152" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="395" type="wall" x="1248" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="396" type="wall" x="1248" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="397" type="wall" x="1248" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="398" type="wall" x="1248" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="399" type="wall" x="1248" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="400" type="wall" x="1344" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="401" type="wall" x="1344" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="402" type="wall" x="1344" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="609" type="wall" x="1392" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="403" type="wall" x="1344" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="404" type="wall" x="1344" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="Enemies" locked="1">
+  <object id="592" name="Enemy" type="balloom_e" x="48" y="336" width="48" height="48"/>
+  <object id="593" name="Enemy" type="oneal_e" x="624" y="624" width="48" height="48"/>
+  <object id="601" name="Enemy" type="oneal_e" x="1056" y="144" width="48" height="48"/>
+  <object id="521" name="Enemy" type="balloom_e" x="288" y="624" width="48" height="48"/>
+  <object id="522" name="Enemy" type="dahl_e" x="432" y="240" width="48" height="48"/>
+  <object id="523" name="Enemy" type="balloom_e" x="624" y="432" width="48" height="48"/>
+  <object id="524" name="Enemy" type="dahl_e" x="816" y="624" width="48" height="48"/>
+  <object id="525" name="Enemy" type="balloom_e" x="816" y="336" width="48" height="48"/>
+  <object id="527" name="Enemy" type="balloom_e" x="1296" y="528" width="48" height="48"/>
+  <object id="600" name="Enemy" type="dahl_e" x="432" y="144" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup id="4" name="Around Walls" locked="1">
+  <object id="414" type="around_wall" x="0" y="96" width="48" height="624"/>
+  <object id="415" type="around_wall" x="48" y="96" width="1392" height="48"/>
+  <object id="416" type="around_wall" x="1440" y="96" width="48" height="624"/>
+  <object id="417" type="around_wall" x="48" y="672" width="1392" height="48"/>
+ </objectgroup>
+</map>
