@@ -6,15 +6,20 @@ package com.bomberman.bombermanplus;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.FXGLMenu;
+import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
+import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -55,6 +60,20 @@ public class BombermanApp extends GameApplication {
         settings.setManualResizeEnabled(false);
         settings.setDeveloperMenuEnabled(false);
         /* settings.setFontUI(FONT); */
+
+        settings.setSceneFactory(new SceneFactory() {
+            @NotNull
+            @Override
+            public FXGLMenu newMainMenu() {
+                return new BombermanMenu();
+            }
+
+            @NotNull
+            @Override
+            public FXGLMenu newGameMenu() {
+                return new BombermanGameMenu();
+            }
+        });
 
 
     }

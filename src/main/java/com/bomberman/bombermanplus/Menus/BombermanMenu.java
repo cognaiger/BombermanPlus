@@ -1,4 +1,4 @@
-package com.bomberman.bombermanplus;
+package com.bomberman.bombermanplus.Menus;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
