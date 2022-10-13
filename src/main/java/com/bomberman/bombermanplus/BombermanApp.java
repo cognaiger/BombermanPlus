@@ -9,14 +9,24 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
+import com.almasb.fxgl.entity.level.Level;
+import com.almasb.fxgl.entity.level.text.TextLevelLoader;
+import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.pathfinding.CellState;
+import com.almasb.fxgl.pathfinding.astar.AStarGrid;
+import com.bomberman.bombermanplus.components.PlayerComponent;
+import com.bomberman.bombermanplus.constants.GameConst;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.util.Map;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
+import static com.bomberman.bombermanplus.BombermanType.*;
 
 public class BombermanApp extends GameApplication {
 
@@ -30,8 +40,12 @@ public class BombermanApp extends GameApplication {
 
     private static final int TIME_PER_LEVEL =300;
     private static final int START_LEVEL = 0;
+    private static final int MAX_LEVEL = 1;
+
+    private AStarGrid grid;
 
     private Entity player;
+    private PlayerComponent playerComponent;
 
     public static void main(String[] args) {                              /* entry point */
         launch(args);
@@ -61,14 +75,20 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        player = FXGL.entityBuilder()
-                .at(300, 300)
-                .view(new Rectangle(25, 25, Color.BLACK))
-                .buildAndAttach();
+        FXGL.getGameWorld().addEntityFactory(new BombermanFactory());
+        Level level = getAssetLoader().loadLevel("lv1demo.tmx", new TMXLevelLoader());
+        getGameWorld().setLevel(level);
+
+        FXGL.spawn("background");
+
+        /* Add the player */
+        player = spawn("player");
     }
 
+
+
     /**
-     * Input handling.
+     * Input handling for player.
      */
     @Override
     protected void initInput() {
@@ -130,6 +150,21 @@ public class BombermanApp extends GameApplication {
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("pixelsMoved", 0);
+        vars.put("level", START_LEVEL);
+        vars.put("speed", GameConst.SPEED);
+    }
+
+    private void loadNextLevel() {
+        if (FXGL.geti("level") >= MAX_LEVEL) {
+            showMessage("You win!");
+        } else {
+            getInput().setProcessInput(false);
+            inc("level", +1);
+        }
+    }
+
+    private void setLevel() {
+        FXGL.setLevelFromMap("lv1demo.tmx");
     }
 }
 
