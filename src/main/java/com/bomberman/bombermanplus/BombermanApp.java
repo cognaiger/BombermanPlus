@@ -6,6 +6,8 @@ package com.bomberman.bombermanplus;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.FXGLMenu;
+import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
@@ -14,6 +16,8 @@ import com.almasb.fxgl.entity.level.text.TextLevelLoader;
 import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
+import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import com.almasb.fxgl.pathfinding.CellState;
 import com.almasb.fxgl.pathfinding.astar.AStarGrid;
 import com.bomberman.bombermanplus.components.PlayerComponent;
@@ -22,6 +26,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -40,8 +45,8 @@ public class BombermanApp extends GameApplication {
 
     private static final int TIME_PER_LEVEL =300;
     private static final int START_LEVEL = 0;
+    public static boolean isSoundEnabled = true;
     private static final int MAX_LEVEL = 1;
-
     private AStarGrid grid;
 
     private Entity player;
@@ -62,12 +67,28 @@ public class BombermanApp extends GameApplication {
         settings.setTitle(TITLE);
         settings.setVersion(VERSION);
         settings.setIntroEnabled(false);
-        settings.setMainMenuEnabled(false);
+        settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(false);
         settings.setPreserveResizeRatio(false);
         settings.setManualResizeEnabled(false);
         settings.setDeveloperMenuEnabled(false);
         /* settings.setFontUI(FONT); */
+
+        settings.setSceneFactory(new SceneFactory() {
+            @NotNull
+            @Override
+            public FXGLMenu newMainMenu() {
+                return new BombermanMenu();
+            }
+
+            @NotNull
+            @Override
+            public FXGLMenu newGameMenu() {
+                return new BombermanGameMenu();
+            }
+        });
+
+
     }
 
     /**
