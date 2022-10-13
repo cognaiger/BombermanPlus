@@ -30,6 +30,7 @@ public class BombermanApp extends GameApplication {
 
     private static final int TIME_PER_LEVEL =300;
     private static final int START_LEVEL = 0;
+    public static boolean isSoundEnabled = true;
 
     private Entity player;
 
@@ -48,12 +49,14 @@ public class BombermanApp extends GameApplication {
         settings.setTitle(TITLE);
         settings.setVersion(VERSION);
         settings.setIntroEnabled(false);
-        settings.setMainMenuEnabled(false);
+        settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(false);
         settings.setPreserveResizeRatio(false);
         settings.setManualResizeEnabled(false);
         settings.setDeveloperMenuEnabled(false);
         /* settings.setFontUI(FONT); */
+
+
     }
 
     /**
