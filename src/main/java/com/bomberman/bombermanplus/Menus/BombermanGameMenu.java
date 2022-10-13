@@ -18,7 +18,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.almasb.fxgl.dsl.FXGL.showMessage;
 
 public class BombermanGameMenu extends FXGLMenu {
-    public BombermanMenu(){
+    public BombermanGameMenu(){
         super(MenuType.GAME_MENU);
         Shape shape = new Rectangle(1080, 720, Color.GRAY);
         shape.setOpacity(0.5);
