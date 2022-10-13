@@ -1,5 +1,5 @@
 /**
- * Place contain information about how to create entities.
+ * Place contains information about how to create entities.
  */
 
 package com.bomberman.bombermanplus;
@@ -24,7 +24,7 @@ import javafx.scene.shape.Rectangle;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.texture;
-import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
+import static com.bomberman.bombermanplus.constants.GameConst.*;
 
 public class BombermanFactory implements EntityFactory {
 
@@ -43,13 +43,13 @@ public class BombermanFactory implements EntityFactory {
     @Spawns("background")
     public Entity spawnBackground(SpawnData data) {
         return FXGL.entityBuilder()
-                .view(new Rectangle(GameConst.GAME_WORLD_WIDTH, GameConst.GAME_WORLD_HEIGHT,
-                                    Color.LIGHTGRAY))
+                .view(new Rectangle(GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT, Color.LIGHTGRAY))
                 .with(new IrremovableComponent())
                 .zIndex(-100)                              /* render behind all other entities */
                 .build();
     }
 
+    /*
     @Spawns("w")
     public Entity spawnWall(SpawnData data) {
         return FXGL.entityBuilder(data)
@@ -78,12 +78,92 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("Powerup")
-    public Entity newPowerup(SpawnData data) {
+    @Spawns("wall")
+    public Entity newWall(SpawnData data) {
+        var width = (int) data.get("width");
+        var height = (int) data.get("height");
+
         return entityBuilder(data)
-                .type(BombermanType.POWERUP)
-                .viewWithBBox(new Rectangle(TILE_SIZE, TILE_SIZE, Color.YELLOW))
+                .type(BombermanType.WALL)
+                .bbox(new HitBox(BoundingShape.box(width, height)))
+                .with(new PhysicsComponent())
                 .with(new CollidableComponent(true))
                 .build();
     }
+     */
+
+    @Spawns("around_wall")
+    public Entity newArWall(SpawnData data) {
+        var width = (int) data.get("width");
+        var height = (int) data.get("height");
+
+        return entityBuilder(data)
+                .type(BombermanType.AROUND_WALL)
+                .bbox(new HitBox(BoundingShape.box(width, height)))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    /*
+    @Spawns("speedItem")
+    public Entity newItem(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.SPEED_ITEM)
+                .view("items/powerup_speed.png")
+                .bbox(new HitBox(BoundingShape.box(data.<Integer> get("width"), data.<Integer> get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("bombsItem")
+    public Entity newItem1(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.BOMB_ITEM)
+                .view("items/powerup_bombs.png")
+                .bbox(new HitBox(BoundingShape.box(data.<Integer> get("width"), data.<Integer> get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("flameItem")
+    public Entity newItem2(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.FLAME_ITEM)
+                .view("items/powerup_flames.png")
+                .bbox(new HitBox(BoundingShape.box(data.<Integer> get("width"), data.<Integer> get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("flamePassItem")
+    public Entity newItem3(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.FLAME_PASS_ITEM)
+                .view("items/powerup_flamepass.png")
+                .bbox(new HitBox(BoundingShape.box(data.<Integer> get("width"), data.<Integer> get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("portal")
+    public Entity newPortal(SpawnData data) {
+        var width = (int) data.get("width");
+        var height = (int) data.get("height");
+
+        var boundingShape = BoundingShape.box(width, height);
+        var hitBox = new HitBox(boundingShape);
+
+        return entityBuilder(data)
+                .type(BombermanType.PORTAL)
+                .bbox(hitBox)
+                .view("items/portal.png")
+                .with(new CollidableComponent(true))
+                .build();
+    }
+     */
 }

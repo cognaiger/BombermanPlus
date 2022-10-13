@@ -11,6 +11,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.entity.level.text.TextLevelLoader;
+import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.pathfinding.CellState;
@@ -25,8 +26,7 @@ import javafx.scene.text.Text;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
-import static com.bomberman.bombermanplus.BombermanType.BRICK;
-import static com.bomberman.bombermanplus.BombermanType.WALL;
+import static com.bomberman.bombermanplus.BombermanType.*;
 
 public class BombermanApp extends GameApplication {
 
@@ -76,25 +76,13 @@ public class BombermanApp extends GameApplication {
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BombermanFactory());
-
-
-        Level level = getAssetLoader().loadLevel("0.txt",
-                new TextLevelLoader(40, 40, '0'));
+        Level level = getAssetLoader().loadLevel("lv1demo.tmx", new TMXLevelLoader());
         getGameWorld().setLevel(level);
 
         FXGL.spawn("background");
 
         /* Add the player */
         player = spawn("player");
-
-        /*
-        grid = AStarGrid.fromWorld(getGameWorld(), 15, 15, 40, 40, type -> {
-            if (type.equals(WALL) || type.equals(BRICK))
-                return CellState.NOT_WALKABLE;
-
-            return CellState.WALKABLE;
-        });
-         */
     }
 
 
@@ -176,7 +164,7 @@ public class BombermanApp extends GameApplication {
     }
 
     private void setLevel() {
-        FXGL.setLevelFromMap("bbm_level1.tmx");
+        FXGL.setLevelFromMap("lv1demo.tmx");
     }
 }
 
