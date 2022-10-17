@@ -4,6 +4,7 @@
 
 package com.bomberman.bombermanplus;
 
+import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.dsl.EntityBuilder;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -13,30 +14,54 @@ import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.components.BooleanComponent;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.components.IrremovableComponent;
+import com.almasb.fxgl.pathfinding.CellMoveComponent;
+import com.almasb.fxgl.pathfinding.astar.AStarMoveComponent;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
+import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import com.bomberman.bombermanplus.components.PlayerComponent;
-import com.bomberman.bombermanplus.constants.GameConst;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import static com.almasb.fxgl.dsl.FXGL.geto;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.texture;
 import static com.bomberman.bombermanplus.constants.GameConst.*;
 
 public class BombermanFactory implements EntityFactory {
 
+    private int radius = TILE_SIZE / 2;
+
     /* value of annotation must match the type used in Tiled exactly */
     @Spawns("player")
     public Entity spawnPlayer(SpawnData data) {
+        var physics = new PhysicsComponent();
+
+        var fixtureDef = new FixtureDef();
+        fixtureDef.setFriction(0);
+        fixtureDef.setDensity(0.1f);
+        physics.setFixtureDef(fixtureDef);
+
+        var bodyDef = new BodyDef();
+        bodyDef.setFixedRotation(true);
+        bodyDef.setType(BodyType.DYNAMIC);
+        physics.setBodyDef(bodyDef);
+
         return entityBuilder(data)
-                .atAnchored(new Point2D(20, 20), new Point2D(20, 20))     /* */
+                .at(48, 250)
+                .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))     /* */
                 .type(BombermanType.PLAYER)
-                .viewWithBBox(new Rectangle(TILE_SIZE, TILE_SIZE, Color.BLUE))
+                .bbox(new HitBox(BoundingShape.circle(radius)))
+                .with(physics)
                 .collidable()
                 .with(new PlayerComponent())
+                .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE))
+                .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))
+                .zIndex(5)
                 .build();
     }
 

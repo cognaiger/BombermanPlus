@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="31" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="3" nextobjectid="7">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="31" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="4" nextobjectid="9">
  <tileset firstgid="1" name="classic" tilewidth="48" tileheight="48" tilecount="256" columns="16">
   <image source="classic.png" width="768" height="768"/>
  </tileset>
@@ -22,10 +22,13 @@
 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6
 </data>
  </layer>
- <objectgroup id="2" name="Wall">
+ <objectgroup id="2" name="Wall" locked="1">
   <object id="2" type="around_wall" x="1.33333" y="96" width="45.3333" height="622.667"/>
   <object id="3" type="around_wall" x="45.3333" y="670.667" width="1441.33" height="48"/>
   <object id="4" type="around_wall" x="46.6667" y="93.3333" width="1441.33" height="48"/>
   <object id="5" type="around_wall" x="1438.67" y="138.667" width="49.3333" height="578.667"/>
+ </objectgroup>
+ <objectgroup id="3" name="Object">
+  <object id="8" type="player" x="48" y="144" width="48" height="49.3333"/>
  </objectgroup>
 </map>

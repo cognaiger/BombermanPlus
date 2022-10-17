@@ -10,21 +10,17 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.level.Level;
-import com.almasb.fxgl.entity.level.text.TextLevelLoader;
 import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.PhysicsWorld;
 import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
 import com.bomberman.bombermanplus.Menus.BombermanMenu;
-import com.almasb.fxgl.pathfinding.CellState;
 import com.almasb.fxgl.pathfinding.astar.AStarGrid;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.constants.GameConst;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,6 +34,7 @@ public class BombermanApp extends GameApplication {
     private static final int VIEW_HEIGHT = 720;
     private static final int VIEW_WIDTH =1080;
 
+    /* window title */
     private static final String TITLE = "BOMBERMAN";
     private static final String VERSION ="1.0";
 
@@ -47,13 +44,13 @@ public class BombermanApp extends GameApplication {
     private static final int START_LEVEL = 0;
     public static boolean isSoundEnabled = true;
     private static final int MAX_LEVEL = 1;
-    private AStarGrid grid;
-
-    private Entity player;
-    private PlayerComponent playerComponent;
 
     public static void main(String[] args) {                              /* entry point */
         launch(args);
+    }
+
+    private static Entity getPlayer() {
+        return getGameWorld().getSingleton(PLAYER);
     }
 
     /**
@@ -101,9 +98,6 @@ public class BombermanApp extends GameApplication {
         getGameWorld().setLevel(level);
 
         FXGL.spawn("background");
-
-        /* Add the player */
-        player = spawn("player");
     }
 
 
@@ -118,32 +112,48 @@ public class BombermanApp extends GameApplication {
         input.addAction(new UserAction("Move Right") {
             @Override
             protected void onAction() {
-                player.translateX(5);                                      /* move right 5 pixels */
-                FXGL.inc("pixelsMoved", +5);
+                getPlayer().getComponent(PlayerComponent.class).right();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                getPlayer().getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.D);
 
         input.addAction(new UserAction("Move Up") {
             @Override
             protected void onAction() {
-                player.translateY(-5);
-                FXGL.inc("pixelsMoved", +5);
+                getPlayer().getComponent(PlayerComponent.class).up();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                getPlayer().getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.W);
 
         input.addAction(new UserAction("Move Down") {
             @Override
             protected void onAction() {
-                player.translateY(5);
-                FXGL.inc("pixelsMoved", +5);
+                getPlayer().getComponent(PlayerComponent.class).down();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                getPlayer().getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.S);
 
         input.addAction(new UserAction("Move Left") {
             @Override
             protected void onAction() {
-                player.translateX(-5);
-                FXGL.inc("pixelsMoved", +5);
+                getPlayer().getComponent(PlayerComponent.class).left();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                getPlayer().getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.A);
     }
@@ -153,14 +163,6 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initUI() {
-        Text textPixels = new Text();
-        textPixels.setTranslateX(50);
-        textPixels.setTranslateY(100);
-
-        textPixels.textProperty().bind(FXGL.getWorldProperties().intProperty("pixelsMoved")
-                .asString());
-
-        FXGL.getGameScene().addUINode(textPixels);                        /* add to scene graph */
     }
 
     /**
@@ -170,9 +172,14 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("pixelsMoved", 0);
         vars.put("level", START_LEVEL);
         vars.put("speed", GameConst.SPEED);
+    }
+
+    @Override
+    protected void initPhysics() {
+        PhysicsWorld physics = getPhysicsWorld();
+        physics.setGravity(0, 0);
     }
 
     private void loadNextLevel() {

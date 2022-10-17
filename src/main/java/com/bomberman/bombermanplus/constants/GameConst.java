@@ -8,4 +8,8 @@ public class GameConst {
 
     /* attribute of player */
     public static final int SPEED = 120;
+
+    public static final int SCORE_ITEM = 20;
+
+    public static final int ENEMY_SPEED_BASE = 70;
 }
