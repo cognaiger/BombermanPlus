@@ -71,6 +71,7 @@ public class BombermanApp extends GameApplication {
         settings.setDeveloperMenuEnabled(false);
         /* settings.setFontUI(FONT); */
 
+        /*
         settings.setSceneFactory(new SceneFactory() {
             @NotNull
             @Override
@@ -84,6 +85,7 @@ public class BombermanApp extends GameApplication {
                 return new BombermanGameMenu();
             }
         });
+         */
 
 
     }
@@ -178,8 +180,7 @@ public class BombermanApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        PhysicsWorld physics = getPhysicsWorld();
-        physics.setGravity(0, 0);
+        getPhysicsWorld().setGravity(0, 0);
     }
 
     private void loadNextLevel() {

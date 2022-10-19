@@ -41,9 +41,11 @@ public class BombermanFactory implements EntityFactory {
     public Entity spawnPlayer(SpawnData data) {
         var physics = new PhysicsComponent();
 
+        /* fixture contain non-geometrical properties of physics bodies for collision detection */
         var fixtureDef = new FixtureDef();
-        fixtureDef.setFriction(0);
-        fixtureDef.setDensity(0.1f);
+        fixtureDef.setFriction(0);                              /* glide along wall */
+        fixtureDef.setDensity(0.5f);
+        /* set custom fixture definition to describe a generated fixture for this physics entity */
         physics.setFixtureDef(fixtureDef);
 
         var bodyDef = new BodyDef();
@@ -52,15 +54,14 @@ public class BombermanFactory implements EntityFactory {
         physics.setBodyDef(bodyDef);
 
         return entityBuilder(data)
-                .at(48, 250)
                 .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))     /* */
                 .type(BombermanType.PLAYER)
                 .bbox(new HitBox(BoundingShape.circle(radius)))
                 .with(physics)
                 .collidable()
                 .with(new PlayerComponent())
-                .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE))
-                .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))
+                .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE))          /* AI */
+                .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))    /* AI */
                 .zIndex(5)
                 .build();
     }
