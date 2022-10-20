@@ -2,6 +2,9 @@ package com.bomberman.bombermanplus.components;
 
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.SpawnData;
+import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.inventory.ItemStack;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -26,7 +29,7 @@ public class PlayerComponent extends Component {
         NORMAL, FLAME_PASS
     }
 
-    private static final double ANIM_TIME_PlAYER = 0.5;
+    private static final double ANIM_TIME_PlAYER = 0.3;
     private static final int SIZE_FRAME = 48;
     private int bombsPlaced = 0;
     private boolean exploreCancel = false;
@@ -185,6 +188,9 @@ public class PlayerComponent extends Component {
          */
     }
 
+    /**
+     * Change status to UP.
+     */
     public void up() {
         if (curMove != PlayerStatus.DIE) {
             curMove = PlayerStatus.UP;
@@ -192,6 +198,9 @@ public class PlayerComponent extends Component {
         }
     }
 
+    /**
+     * Change status to DOWN.
+     */
     public void down() {
         if (curMove != PlayerStatus.DIE) {
             curMove = PlayerStatus.DOWN;
@@ -199,6 +208,9 @@ public class PlayerComponent extends Component {
         }
     }
 
+    /**
+     * Change status to RIGHT.
+     */
     public void right() {
         if (curMove != PlayerStatus.DIE) {
             curMove = PlayerStatus.RIGHT;
@@ -206,6 +218,9 @@ public class PlayerComponent extends Component {
         }
     }
 
+    /**
+     * Change status to LEFT.
+     */
     public void left() {
         if (curMove != PlayerStatus.DIE) {
             curMove = PlayerStatus.LEFT;
@@ -213,13 +228,34 @@ public class PlayerComponent extends Component {
         }
     }
 
+    /**
+     * Change status to STOP.
+     */
     public void stop() {
         if (curMove != PlayerStatus.DIE) {
             curMove = PlayerStatus.STOP;
         }
     }
 
+    /**
+     * Change status to DIE.
+     */
     public void die() {
         curMove = PlayerStatus.DIE;
+    }
+
+    public void placeBomb() {
+        if (bombsPlaced == geti("bomb")) {
+            return;
+        }
+        bombsPlaced++;
+        int bombX = (int) (entity.getX() % TILE_SIZE > TILE_SIZE / 2
+                           ? entity.getX() + TILE_SIZE - entity.getX() % TILE_SIZE + 1
+                           : entity.getX() - entity.getX() % TILE_SIZE + 1);
+        int bombY = (int) (entity.getY() % TILE_SIZE > TILE_SIZE / 2
+                ? entity.getY() + TILE_SIZE - entity.getY() % TILE_SIZE + 1
+                : entity.getY() - entity.getY() % TILE_SIZE + 1);
+
+        Entity bomb = spawn("bomb", new SpawnData(bombX, bombY));
     }
 }

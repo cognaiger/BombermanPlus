@@ -22,6 +22,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import com.bomberman.bombermanplus.components.BombComponent;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
@@ -75,6 +76,29 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("bomb")
+    public Entity newBomb(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.BOMB)
+                .with(new BombComponent())
+                .bbox(new HitBox(new Point2D(2, 2), BoundingShape.circle(radius - 2)))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("wall_bomb")
+    public Entity newWallBomb(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.WALL_BOMB)
+                .bbox(new HitBox(new Point2D(0, 0), BoundingShape.box(TILE_SIZE, TILE_SIZE)))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new PhysicsComponent())              /* ? */
+                .with(new CollidableComponent())
+                .build();
+    }
+
+
     /*
     @Spawns("w")
     public Entity spawnWall(SpawnData data) {
@@ -91,16 +115,6 @@ public class BombermanFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(BombermanType.BRICK)
                 .viewWithBBox(texture("brick.png", 40, 40))
-                .build();
-    }
-
-    @Spawns("bomb")
-    public Entity newBomb(SpawnData data) {
-        return entityBuilder(data)
-                .type(BombermanType.BOMB)
-                .viewWithBBox("bomb.png")
-                .atAnchored(new Point2D(13, 11),
-                        new Point2D(data.getX() + TILE_SIZE / 2, data.getY() + TILE_SIZE / 2))
                 .build();
     }
 

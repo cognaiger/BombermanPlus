@@ -158,6 +158,13 @@ public class BombermanApp extends GameApplication {
                 getPlayer().getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.A);
+
+        input.addAction(new UserAction("Place bomb") {
+            @Override
+            protected void onActionBegin() {
+                getPlayer().getComponent(PlayerComponent.class).placeBomb();
+            }
+        }, KeyCode.SPACE);
     }
 
     /**
@@ -176,6 +183,8 @@ public class BombermanApp extends GameApplication {
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("level", START_LEVEL);
         vars.put("speed", GameConst.SPEED);
+        vars.put("flame", 1);
+        vars.put("bomb", 1);
     }
 
     @Override
