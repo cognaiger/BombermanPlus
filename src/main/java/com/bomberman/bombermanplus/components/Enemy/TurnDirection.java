@@ -1,4 +1,4 @@
-package com.bomberman.bombermanplus.Enemy;
+package com.bomberman.bombermanplus.components.Enemy;
 
 public enum TurnDirection {
     BLOCK_LEFT,
@@ -6,3 +6,4 @@ public enum TurnDirection {
     BLOCK_UP,
     BLOCK_DOWN
 }
+
