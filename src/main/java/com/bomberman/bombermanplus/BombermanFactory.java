@@ -23,6 +23,7 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import com.bomberman.bombermanplus.components.BombComponent;
+import com.bomberman.bombermanplus.components.FlameComponent;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
@@ -98,26 +99,108 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
-
-    /*
-    @Spawns("w")
-    public Entity spawnWall(SpawnData data) {
-        return FXGL.entityBuilder(data)
-                .type(BombermanType.WALL)
-                .viewWithBBox(new Rectangle(40, 40, Color.GRAY.saturate()))
-                .with(new PhysicsComponent())
+    @Spawns("centerFlame")
+    public Entity newCenterFlame(SpawnData data) {
+        return entityBuilder()
+                .type(BombermanType.FLAME)
+                .with(new FlameComponent(128, 130))
+                .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
+                        Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
                 .with(new CollidableComponent(true))
+                .zIndex(1)
                 .build();
     }
 
-    @Spawns("b")
-    public Entity spawnBrick(SpawnData data) {
+    @Spawns("horizontalFlame")
+    public Entity newHorizontalFlame(SpawnData data) {
         return entityBuilder(data)
-                .type(BombermanType.BRICK)
-                .viewWithBBox(texture("brick.png", 40, 40))
+                .type(BombermanType.FLAME)
+                .with(new FlameComponent(147, 149))
+                .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
+                        Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new CollidableComponent())
+                .zIndex(1)
                 .build();
     }
-     */
+
+    @Spawns("verticalFlame")
+    public Entity newVerticalFlame(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.FLAME)
+                .with(new FlameComponent(160, 162))
+                .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
+                        Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getY(), data.getY()))
+                .with(new CollidableComponent(true))
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("aboveEFlame")
+    public Entity newAboveEFl(SpawnData data) {
+        return entityBuilder(data)
+                .type(BombermanType.FLAME)
+                .with(new FlameComponent(144, 146))
+                .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
+                        Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new CollidableComponent(true))
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("bottomEFlame")
+    public Entity newBottomEFlame(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.FLAME)
+                .with(new FlameComponent(176, 178))
+                .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
+                        Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new CollidableComponent(true))
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("leftEFlame")
+    public Entity newLeftEFlame(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.FLAME)
+                .with(new FlameComponent(131, 133))
+                .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
+                        Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new CollidableComponent(true))
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("rightEFlame")
+    public Entity newRightEFlame(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.FLAME)
+                .with(new FlameComponent(163, 165))
+                .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
+                        Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new CollidableComponent(true))
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("check_flame")
+    public Entity newCheckFlame(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.CHECK_FLAME)
+                .viewWithBBox(new Rectangle(TILE_SIZE, TILE_SIZE, Color.TRANSPARENT))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new CollidableComponent(true))
+                .zIndex(1)
+                .build();
+    }
+
 
     @Spawns("wall")
     public Entity newWall(SpawnData data) {

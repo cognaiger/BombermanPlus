@@ -244,6 +244,9 @@ public class PlayerComponent extends Component {
         curMove = PlayerStatus.DIE;
     }
 
+    /**
+     * Place bomb.
+     */
     public void placeBomb() {
         if (bombsPlaced == geti("bomb")) {
             return;
@@ -257,5 +260,16 @@ public class PlayerComponent extends Component {
                 : entity.getY() - entity.getY() % TILE_SIZE + 1);
 
         Entity bomb = spawn("bomb", new SpawnData(bombX, bombY));
+
+        if (curMove != PlayerStatus.DIE) {
+            getGameTimer().runOnceAfter(() -> {
+                if(!exploreCancel) {
+                    bomb.getComponent(BombComponent.class).explode();
+                } else {
+                    bomb.removeFromWorld();
+                }
+                bombsPlaced--;
+            }, Duration.seconds(2.5));
+        }
     }
 }
