@@ -71,7 +71,6 @@ public class BombermanApp extends GameApplication {
         settings.setDeveloperMenuEnabled(false);
         /* settings.setFontUI(FONT); */
 
-        /*
         settings.setSceneFactory(new SceneFactory() {
             @NotNull
             @Override
@@ -85,7 +84,7 @@ public class BombermanApp extends GameApplication {
                 return new BombermanGameMenu();
             }
         });
-         */
+
 
 
     }
