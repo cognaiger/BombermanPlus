@@ -117,6 +117,7 @@ public class BombermanFactory implements EntityFactory {
                 .viewWithBBox(texture("brick.png", 40, 40))
                 .build();
     }
+     */
 
     @Spawns("wall")
     public Entity newWall(SpawnData data) {
@@ -125,20 +126,6 @@ public class BombermanFactory implements EntityFactory {
 
         return entityBuilder(data)
                 .type(BombermanType.WALL)
-                .bbox(new HitBox(BoundingShape.box(width, height)))
-                .with(new PhysicsComponent())
-                .with(new CollidableComponent(true))
-                .build();
-    }
-     */
-
-    @Spawns("around_wall")
-    public Entity newArWall(SpawnData data) {
-        var width = (int) data.get("width");
-        var height = (int) data.get("height");
-
-        return entityBuilder(data)
-                .type(BombermanType.AROUND_WALL)
                 .bbox(new HitBox(BoundingShape.box(width, height)))
                 .with(new PhysicsComponent())
                 .with(new CollidableComponent(true))
