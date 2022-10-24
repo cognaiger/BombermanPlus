@@ -119,18 +119,18 @@ public class BombComponent extends Component {
         }
     }
 
-    private void spawnRightF(int flameLen) {
+    private void spawnRightF(int flameLength) {
         getRightBlocks();
-        for (int i = 1; i <= flameLen; i++) {
-            if (i == flameLen) {
-                listFire.add(spawn("rightEFLame",
-                                new SpawnData(entity.getX() + TILE_SIZE * i, entity.getY())));
+        for (int i = 1; i <= flameLength; i++) {
+            if (i == flameLength) {
+                listFire.add(spawn("rightEFlame"
+                        , new SpawnData(entity.getX() + TILE_SIZE * i, entity.getY())));
                 break;
             }
 
             boolean isContinued = true;
-            Entity checkF = spawn("check_flame",
-                    new SpawnData(entity.getX() + TILE_SIZE * (i - 1), entity.getY()));
+            Entity checkF = spawn("check_flame"
+                    , new SpawnData(entity.getX() + TILE_SIZE * (i - 1), entity.getY()));
 
             for (Entity value : listRightBlock) {
                 if (checkF.isColliding(value)) {
@@ -142,11 +142,11 @@ public class BombComponent extends Component {
             checkF.removeFromWorld();
 
             if (isContinued) {
-                listFire.add(spawn("horizontalFlame",
-                        new SpawnData(entity.getX() + TILE_SIZE * i, entity.getY())));
+                listFire.add(spawn("horizontalFlame"
+                        , new SpawnData(entity.getX() + TILE_SIZE * i, entity.getY())));
             } else {
-                listFire.add(spawn("rightEFlame",
-                        new SpawnData(entity.getX() + TILE_SIZE * i, entity.getY())));
+                listFire.add(spawn("rightEFlame"
+                        , new SpawnData(entity.getX() + TILE_SIZE * i, entity.getY())));
                 break;
             }
         }

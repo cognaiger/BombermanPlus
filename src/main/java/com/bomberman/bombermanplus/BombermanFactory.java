@@ -216,6 +216,8 @@ public class BombermanFactory implements EntityFactory {
     }
 
     /*
+     * Spawn buff item.
+     */
     @Spawns("speedItem")
     public Entity newItem(SpawnData data) {
         return entityBuilder(data)
@@ -260,6 +262,9 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    /*
+     * Spawn portal.
+     */
     @Spawns("portal")
     public Entity newPortal(SpawnData data) {
         var width = (int) data.get("width");
@@ -275,5 +280,4 @@ public class BombermanFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
-     */
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="31" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="8" nextobjectid="610">
- <tileset firstgid="1" name="classic" tilewidth="48" tileheight="48" tilecount="0" columns="16">
+ <tileset firstgid="1" name="classic" tilewidth="48" tileheight="48" tilecount="256" columns="16">
   <image source="classic.png" trans="ff00ff" width="768" height="768"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="31" height="15">
@@ -22,7 +22,7 @@
 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6
 </data>
  </layer>
- <objectgroup id="3" name="Items">
+ <objectgroup id="3" name="Items" visible="0">
   <object id="154" name="Item" class="speedItem" x="246" y="150" width="36" height="36"/>
   <object id="156" name="Item" class="speedItem" x="486" y="534" width="36" height="36"/>
   <object id="157" name="Item" class="speedItem" x="918" y="438" width="36" height="36"/>
@@ -35,7 +35,7 @@
   <object id="159" name="Item" class="flameItem" x="1062" y="630" width="36" height="36"/>
   <object id="599" name="Item" class="portal" x="246" y="342" width="36" height="36"/>
  </objectgroup>
- <objectgroup id="6" name="Bricks">
+ <objectgroup id="6" name="Bricks" visible="0">
   <object id="528" name="brick" class="brick" x="48" y="624" width="48" height="48">
    <ellipse/>
   </object>
@@ -226,7 +226,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup id="2" name="Walls">
+ <objectgroup id="2" name="Walls" visible="0">
   <object id="75" name="Player" class="player" x="48" y="144" width="48" height="48"/>
   <object id="333" class="wall" x="96" y="192" width="48" height="48">
    <ellipse/>
@@ -463,7 +463,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup id="7" name="Enemies">
+ <objectgroup id="7" name="Enemies" visible="0">
   <object id="592" name="Enemy" class="balloom_e" x="48" y="336" width="48" height="48"/>
   <object id="593" name="Enemy" class="oneal_e" x="624" y="624" width="48" height="48"/>
   <object id="601" name="Enemy" class="oneal_e" x="1056" y="144" width="48" height="48"/>
@@ -475,7 +475,7 @@
   <object id="527" name="Enemy" class="balloom_e" x="1296" y="528" width="48" height="48"/>
   <object id="600" name="Enemy" class="dahl_e" x="432" y="144" width="48" height="48"/>
  </objectgroup>
- <objectgroup id="4" name="Around Walls" locked="1">
+ <objectgroup id="4" name="Around Walls" visible="0" locked="1">
   <object id="414" class="around_wall" x="0" y="96" width="48" height="624"/>
   <object id="415" class="around_wall" x="48" y="96" width="1392" height="48"/>
   <object id="416" class="around_wall" x="1440" y="96" width="48" height="624"/>

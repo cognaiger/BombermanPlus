@@ -95,7 +95,7 @@ public class BombermanApp extends GameApplication {
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BombermanFactory());
-        Level level = getAssetLoader().loadLevel("lv1main.tmx", new TMXLevelLoader());
+        Level level = getAssetLoader().loadLevel("lv1.tmx", new TMXLevelLoader());
         getGameWorld().setLevel(level);
 
         FXGL.spawn("background");
@@ -184,6 +184,8 @@ public class BombermanApp extends GameApplication {
         vars.put("speed", GameConst.SPEED);
         vars.put("flame", 1);
         vars.put("bomb", 1);
+        vars.put("score", 0);
+        vars.put("immortality", false);
     }
 
     @Override
