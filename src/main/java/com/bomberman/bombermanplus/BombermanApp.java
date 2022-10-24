@@ -39,11 +39,11 @@ import static com.bomberman.bombermanplus.BombermanType.*;
 public class BombermanApp extends GameApplication {
 
     private static final int VIEW_HEIGHT = 720;
-    private static final int VIEW_WIDTH =1080;
+    private static final int VIEW_WIDTH = 1080;
 
     /* window title */
     private static final String TITLE = "BOMBERMAN";
-    private static final String VERSION ="1.0";
+    private static final String VERSION = "1.0";
 
     private static final String FONT = "Retro Gaming.ttf";
 
