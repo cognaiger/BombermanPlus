@@ -22,10 +22,17 @@ import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.constants.GameConst;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
+import static com.almasb.fxgl.dsl.FXGL.getGameController;
+import static com.almasb.fxgl.dsl.FXGL.getGameScene;
+import static com.almasb.fxgl.dsl.FXGL.getGameTimer;
+import static com.almasb.fxgl.dsl.FXGL.geti;
+import static com.almasb.fxgl.dsl.FXGL.set;
+import static com.almasb.fxgl.dsl.FXGL.showMessage;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.BombermanType.*;
 
@@ -40,10 +47,11 @@ public class BombermanApp extends GameApplication {
 
     private static final String FONT = "Retro Gaming.ttf";
 
-    private static final int TIME_PER_LEVEL =300;
+    private static final int TIME_PER_LEVEL = 300;
     private static final int START_LEVEL = 0;
     public static boolean isSoundEnabled = true;
     private static final int MAX_LEVEL = 1;
+    private boolean requestNewGame = false;
 
     public static void main(String[] args) {                              /* entry point */
         launch(args);
@@ -71,7 +79,7 @@ public class BombermanApp extends GameApplication {
         settings.setDeveloperMenuEnabled(false);
         /* settings.setFontUI(FONT); */
 
-        /*
+
         settings.setSceneFactory(new SceneFactory() {
             @NotNull
             @Override
@@ -85,7 +93,7 @@ public class BombermanApp extends GameApplication {
                 return new BombermanGameMenu();
             }
         });
-         */
+
 
 
     }
@@ -176,6 +184,7 @@ public class BombermanApp extends GameApplication {
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("level", START_LEVEL);
         vars.put("speed", GameConst.SPEED);
+        vars.put("numOfEnemy", 10);
     }
 
     @Override
@@ -191,6 +200,27 @@ public class BombermanApp extends GameApplication {
             inc("level", +1);
         }
     }
+
+//    @Override
+//    protected void onUpdate(double tpf) {
+//
+//        if (geti("time") == 0) {
+//            showMessage("Game Over leu leu!!!", () -> getGameController().gotoMainMenu());
+//        }
+//
+//        if (requestNewGame) {
+//            requestNewGame = false;
+//            getPlayer().getComponent(PlayerComponent.class).die();
+//            getGameTimer().runOnceAfter(() -> getGameScene().getViewport().fade(() -> {
+//                if (geti("life") <= 0) {
+//                    showMessage("Game Over leu leu!!!",
+//                            () -> getGameController().gotoMainMenu());
+//                }
+//                setLevel();
+//                set("immortality", false);
+//            }), Duration.seconds(0.5));
+//        }
+//    }
 
     private void setLevel() {
         FXGL.setLevelFromMap("lv1demo.tmx");
