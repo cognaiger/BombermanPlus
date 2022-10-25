@@ -128,7 +128,7 @@ public class BombermanFactory implements EntityFactory {
                 .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
                         Color.TRANSPARENT))
                 .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
-                .with(new CollidableComponent())
+                .with(new CollidableComponent(true))
                 .zIndex(1)
                 .build();
     }

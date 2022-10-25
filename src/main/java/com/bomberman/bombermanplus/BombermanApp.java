@@ -58,7 +58,6 @@ public class BombermanApp extends GameApplication {
     private static final int TIME_PER_LEVEL = 300;
     private static final int START_LEVEL = 0;
     public static boolean isSoundEnabled = true;
-    private static final int MAX_LEVEL = 1;
     private boolean requestNewGame = false;
 
     public static void main(String[] args) {                              /* entry point */
@@ -224,7 +223,7 @@ public class BombermanApp extends GameApplication {
      * @param portal portal
      */
     private void endLevel(Entity player, Entity portal) {
-        if (geti("numOfEnemy") > 0) {
+        if (geti("numOfEnemy") < 0) {
             return;
         }
         play("next_level.wav");
