@@ -1,19 +1,15 @@
 package com.bomberman.bombermanplus.components;
 
-import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
-import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.inventory.ItemStack;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.PhysicsWorld;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.bomberman.bombermanplus.BombermanType;
-import javafx.css.Size;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.image;
@@ -47,6 +43,10 @@ public class PlayerComponent extends Component {
     private AnimationChannel aniWalkDown, aniWalkRight, aniWalkUp, aniWalkLeft;
     private AnimationChannel aniDie;
 
+    /**
+     * Constructor.
+     * Collision between player and items.
+     */
     public PlayerComponent() {
         PhysicsWorld physics = getPhysicsWorld();
         physics.setGravity(0, 0);
@@ -201,7 +201,7 @@ public class PlayerComponent extends Component {
                 break;
         }
 
-        /*
+
         timeWalk += tbf;
         double dx = entity.getX() - lastX;
         double dy = entity.getY() - lastY;
@@ -209,6 +209,7 @@ public class PlayerComponent extends Component {
         lastY = entity.getY();
         if (timeWalk > 0.6) {
             timeWalk = 0;
+            /*
             if (!(dx == 0 && dy == 0)) {
                 if (curMove == PlayerStatus.DOWN || curMove == PlayerStatus.UP) {
                     play("");
@@ -216,8 +217,8 @@ public class PlayerComponent extends Component {
                     play("");
                 }
             }
+             */
         }
-         */
     }
 
     /**
