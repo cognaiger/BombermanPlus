@@ -106,7 +106,7 @@ public abstract class NormalEnemy extends Component {
             }
         }
     }
-    public double getRandom(){
+    protected double getRandom(){
         return Math.random() > 0.5 ? ENEMY_SPEED_BASE : -ENEMY_SPEED_BASE;
     }
 

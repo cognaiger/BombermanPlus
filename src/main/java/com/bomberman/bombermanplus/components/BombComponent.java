@@ -1,5 +1,5 @@
 package com.bomberman.bombermanplus.components;
-
+import static com.bomberman.bombermanplus.constants.GameConst.*;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
