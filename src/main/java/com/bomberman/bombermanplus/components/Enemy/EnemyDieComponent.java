@@ -6,14 +6,14 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
-import static com.bomberman.bombermanplus.constants.GameConst.SIZE_BLOCK;
+import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
 
 public class EnemyDieComponent extends Component {
     private final AnimatedTexture texture;
 
     public EnemyDieComponent(){
         AnimationChannel animationChannel = new AnimationChannel(image("sprites.png"), 16,
-                SIZE_BLOCK, SIZE_BLOCK, Duration.seconds(1.5), 75, 77);
+                TILE_SIZE, TILE_SIZE, Duration.seconds(1.5), 75, 77);
 
         texture = new AnimatedTexture(animationChannel);
         texture.loop();

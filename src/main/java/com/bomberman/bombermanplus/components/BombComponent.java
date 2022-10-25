@@ -6,30 +6,15 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.SpawnData;
-import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.texture.AnimatedTexture;
-import com.almasb.fxgl.texture.AnimationChannel;
-import com.bomberman.bombermanplus.BombermanApp;
 import com.bomberman.bombermanplus.BombermanType;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.almasb.fxgl.dsl.FXGL.onCollisionEnd;
 import static com.almasb.fxgl.dsl.FXGL.spawn;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
-import static com.bomberman.bombermanplus.constants.GameConst.SIZE_BLOCK;
-
-public class BombComponent extends Component {
-    private ArrayList<Entity> listFire = new ArrayList<>();
-    Entity wallBomb;
-    private AnimatedTexture texture;
-    private AnimationChannel animation;
-import static com.bomberman.bombermanplus.constants.GameConst.*;
+import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
 
 public class BombComponent extends Component {
     private ArrayList<Entity>listFire = new ArrayList<>();
@@ -47,13 +32,15 @@ public class BombComponent extends Component {
      * Constructor: add sprite for bomb.
      */
     public BombComponent() {
+        /*
+         * Once player walk out of bomb -> bomb becomes obstacle.
+         */
         onCollisionEnd(BombermanType.BOMB, BombermanType.PLAYER, (b, p) -> {
             if (entity != null) {
                 wallBomb = spawn("wall_bomb", new SpawnData(entity.getX(), entity.getY()));
             }
         });
 
-        animation = new AnimationChannel(image("sprites.png"), 16, SIZE_BLOCK, SIZE_BLOCK,
         animation = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(0.5), 72, 74);
         texture = new AnimatedTexture(animation);

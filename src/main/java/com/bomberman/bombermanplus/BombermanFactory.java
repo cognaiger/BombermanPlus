@@ -5,13 +5,11 @@
 package com.bomberman.bombermanplus;
 
 import com.almasb.fxgl.core.util.LazyValue;
-import com.almasb.fxgl.dsl.EntityBuilder;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.entity.components.BooleanComponent;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.components.IrremovableComponent;
 import com.almasb.fxgl.pathfinding.CellMoveComponent;
@@ -22,6 +20,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import com.bomberman.bombermanplus.components.BlockComponent;
 import com.bomberman.bombermanplus.components.Enemy.BalloomComponent;
 import com.bomberman.bombermanplus.components.Enemy.OnealComponent;
 import com.bomberman.bombermanplus.components.BombComponent;
@@ -33,7 +32,6 @@ import javafx.scene.shape.Rectangle;
 
 import static com.almasb.fxgl.dsl.FXGL.geto;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
-import static com.almasb.fxgl.dsl.FXGLForKtKt.texture;
 import static com.bomberman.bombermanplus.constants.GameConst.*;
 
 public class BombermanFactory implements EntityFactory {
@@ -62,7 +60,7 @@ public class BombermanFactory implements EntityFactory {
                 .type(BombermanType.PLAYER)
                 .bbox(new HitBox(BoundingShape.circle(radius)))
                 .with(physics)
-                .collidable()
+                .with(new CollidableComponent(true))
                 .with(new PlayerComponent())
                 .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE))          /* AI */
                 .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))    /* AI */
@@ -70,6 +68,9 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    /*
+     * Spawn background.
+     */
     @Spawns("background")
     public Entity spawnBackground(SpawnData data) {
         return FXGL.entityBuilder()
@@ -207,6 +208,9 @@ public class BombermanFactory implements EntityFactory {
     }
 
 
+    /*
+     * Spawn obstacles.
+     */
     @Spawns("wall")
     public Entity newWall(SpawnData data) {
         var width = (int) data.get("width");
@@ -230,6 +234,100 @@ public class BombermanFactory implements EntityFactory {
                 .bbox(new HitBox(BoundingShape.box(width, height)))
                 .with(new PhysicsComponent())
                 .with(new CollidableComponent(true))
+                .build();
+    }
+
+    /*
+     * Spawn destructible objects.
+     */
+    @Spawns("brick")
+    public Entity newBrick(SpawnData data) {
+        var width = (int) data.get("width");
+        var height = (int) data.get("height");
+
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.BRICK)
+                .bbox(new HitBox(BoundingShape.box(width, height)))
+                .with(new BlockComponent(104, 104, TIME_PER_LEVEL))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("brick_break")
+    public Entity newBrickBreak(SpawnData data) {
+        var boundingShape = BoundingShape.box(
+                TILE_SIZE / 2.0f - 3,
+                TILE_SIZE / 2.0f - 3);
+
+        var hitBox = new HitBox(boundingShape);
+
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.BRICK_BREAK)
+                .with(new BlockComponent(105, 107, 1))
+                .bbox(hitBox)
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("grass")
+    public Entity newGrass(SpawnData data) {
+        var width = (int) data.get("width");
+        var height = (int) data.get("height");
+
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.GRASS)
+                .bbox(new HitBox(BoundingShape.box(width, height)))
+                .with(new BlockComponent(88, 88, TIME_PER_LEVEL))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("grass_break")
+    public Entity newGrassBreak(SpawnData data) {
+        var boundingShape = BoundingShape.box(
+                TILE_SIZE / 2.0f - 3,
+                TILE_SIZE / 2.0f - 3);
+
+        var hitBox = new HitBox(boundingShape);
+
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.GRASS_BREAK)
+                .bbox(hitBox)
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new BlockComponent(89, 91, 1))
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("coral")
+    public Entity newCoral(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.CORAL)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"),
+                        data.<Integer>get("height"))))
+                .with(new BlockComponent(92, 92, TIME_PER_LEVEL))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("coral_break")
+    public Entity newCoralBreak(SpawnData data) {
+        var boundingShape = BoundingShape.box(
+                TILE_SIZE / 2.0f - 3,
+                TILE_SIZE / 2.0f - 3);
+
+        var hitBox = new HitBox(boundingShape);
+
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.CORAL_BREAK)
+                .bbox(hitBox)
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new BlockComponent(93, 95, 1))
+                .zIndex(1)
                 .build();
     }
 
@@ -299,6 +397,9 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    /*
+     * Spawn enemies.
+     */
     @Spawns("balloom_e")
     public Entity newBalloom(SpawnData data) {
         return FXGL.entityBuilder(data)
@@ -318,7 +419,7 @@ public class BombermanFactory implements EntityFactory {
                 .bbox(new HitBox(BoundingShape.circle(radius - 2)))
                 .with(new CollidableComponent(true))
                 .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))
-                .with(new CellMoveComponent(SIZE_BLOCK, SIZE_BLOCK, ENEMY_SPEED_BASE))
+                .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE))
                 .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))
                 .with(new OnealComponent())
                 .zIndex(2)
