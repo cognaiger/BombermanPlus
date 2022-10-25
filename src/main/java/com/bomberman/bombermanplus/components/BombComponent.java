@@ -69,9 +69,9 @@ public class BombComponent extends Component {
                     new SpawnData(entity.getX(), entity.getY() - TILE_SIZE)));
         } else {
             spawnRightF(flameLen);
+            spawnLeftF(flameLen);
             spawnAboveF(flameLen);
             spawnBottomF(flameLen);
-            spawnLeftF(flameLen);
         }
 
         clearFlame();
@@ -89,10 +89,16 @@ public class BombComponent extends Component {
         entity.removeFromWorld();
     }
 
+    /**
+     * Discover blocks on the right of bombs.
+     */
     public void getRightBlocks() {
+
         List<Entity> temp = new ArrayList<>(getGameWorld().getEntitiesByType(BombermanType.WALL));
         for (Entity value : temp) {
-            if (value.getY() == entity.getY() - 1 && value.getX() >= entity.getX()) {
+            int valueX = (int) value.getX();
+            int valueY = (int) value.getY();
+            if (valueY == entity.getY() - 1 && valueX >= entity.getX()) {
                 listRightBlock.add(value);
             }
         }
