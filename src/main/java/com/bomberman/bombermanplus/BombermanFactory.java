@@ -22,8 +22,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
-import com.bomberman.bombermanplus.components.Enemy.BalloomComponent;
-import com.bomberman.bombermanplus.components.Enemy.OnealComponent;
+import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
@@ -206,6 +205,28 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("dahn_e")
+    public Entity newDahn(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.DAHL_E)
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new DahlComponent())
+                .with(new CollidableComponent(true))
+                .zIndex(2)
+                .build();
+    }
+    @Spawns("ovape_e")
+    public Entity newOvape(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.OVAPE_E)
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new OvapeComponent())
+                .with(new CollidableComponent(true))
+                .zIndex(2)
+                .build();
+    }
     @Spawns("oneal_e")
     public Entity newOneal(SpawnData data) {
         return FXGL.entityBuilder(data)
@@ -217,6 +238,44 @@ public class BombermanFactory implements EntityFactory {
                 .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))
                 .with(new OnealComponent())
                 .zIndex(2)
+                .build();
+    }
+
+    @Spawns("pass_e")
+    public Entity newPass(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.PASS_E)
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
+                .with(new CollidableComponent(true))
+                .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))
+                .with(new CellMoveComponent(SIZE_BLOCK, SIZE_BLOCK, ENEMY_SPEED_BASE))
+                .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))
+                .with(new PassComponent())
+                .zIndex(2)
+                .build();
+    }
+
+    @Spawns("doria_e")
+    public Entity newDoria(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.DORIA_E)
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
+                .with(new CollidableComponent(true))
+                .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))
+                .with(new CellMoveComponent(SIZE_BLOCK, SIZE_BLOCK, ENEMY_SPEED_BASE + 20))
+                .with(new AStarMoveComponent(new LazyValue<>(() -> geto("_grid"))))
+                .with(new DoriaComponent())
+                .zIndex(2)
+                .build();
+    }
+
+    @Spawns("enemyDie")
+    public Entity newEnemyDie(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.ENEMY_DIE)
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new EnemyDieComponent())
                 .build();
     }
 }
