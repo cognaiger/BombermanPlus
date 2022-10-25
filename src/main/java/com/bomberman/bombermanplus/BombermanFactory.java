@@ -140,7 +140,7 @@ public class BombermanFactory implements EntityFactory {
                 .with(new FlameComponent(160, 162))
                 .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
                         Color.TRANSPARENT))
-                .atAnchored(new Point2D(0, 0), new Point2D(data.getY(), data.getY()))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
                 .with(new CollidableComponent(true))
                 .zIndex(1)
                 .build();
@@ -457,7 +457,7 @@ public class BombermanFactory implements EntityFactory {
                 .bbox(new HitBox(BoundingShape.circle(radius - 2)))
                 .with(new CollidableComponent(true))
                 .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))
-                .with(new CellMoveComponent(SIZE_BLOCK, SIZE_BLOCK, ENEMY_SPEED_BASE))
+                .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE))
                 .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))
                 .with(new PassComponent())
                 .zIndex(2)
@@ -471,7 +471,7 @@ public class BombermanFactory implements EntityFactory {
                 .bbox(new HitBox(BoundingShape.circle(radius - 2)))
                 .with(new CollidableComponent(true))
                 .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))
-                .with(new CellMoveComponent(SIZE_BLOCK, SIZE_BLOCK, ENEMY_SPEED_BASE + 20))
+                .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE + 20))
                 .with(new AStarMoveComponent(new LazyValue<>(() -> geto("_grid"))))
                 .with(new DoriaComponent())
                 .zIndex(2)
