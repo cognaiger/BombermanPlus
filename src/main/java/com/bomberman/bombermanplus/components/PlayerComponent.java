@@ -278,7 +278,7 @@ public class PlayerComponent extends Component {
     }
 
     /**
-     * Place bomb.
+     * Place bomb and explode.
      */
     public void placeBomb() {
         if (bombsPlaced == geti("bomb")) {
