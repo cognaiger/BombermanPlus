@@ -8,33 +8,32 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
+import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.physics.PhysicsWorld;
+import com.almasb.fxgl.pathfinding.CellState;
+import com.almasb.fxgl.pathfinding.astar.AStarGrid;
 import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
 import com.bomberman.bombermanplus.Menus.BombermanMenu;
-import com.almasb.fxgl.pathfinding.astar.AStarGrid;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.constants.GameConst;
 import javafx.scene.input.KeyCode;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-import static com.almasb.fxgl.dsl.FXGL.getGameController;
 import static com.almasb.fxgl.dsl.FXGL.getGameScene;
-import static com.almasb.fxgl.dsl.FXGL.getGameTimer;
-import static com.almasb.fxgl.dsl.FXGL.geti;
+import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGL.showMessage;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.BombermanType.*;
+import static com.bomberman.bombermanplus.constants.GameConst.*;
+import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
 
 public class BombermanApp extends GameApplication {
 
@@ -103,8 +102,21 @@ public class BombermanApp extends GameApplication {
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BombermanFactory());
-        Level level = getAssetLoader().loadLevel("lv1main.tmx", new TMXLevelLoader());
+        Level level = getAssetLoader().loadLevel("bbm_level1.tmx", new TMXLevelLoader());
         getGameWorld().setLevel(level);
+
+        Viewport viewport = getGameScene().getViewport();
+        viewport.setBounds(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT);
+        viewport.bindToEntity(
+                getPlayer(),
+                FXGL.getAppWidth() / 2.0f,
+                FXGL.getAppHeight() / 2.0f);
+        viewport.setLazy(true);
+        set("time", TIME_PER_LEVEL);
+        set("bomb", 1);
+        set("flame", 1);
+        set("numOfEnemy", 10);
+        setGridForAi();
 
         FXGL.spawn("background");
     }
@@ -193,6 +205,8 @@ public class BombermanApp extends GameApplication {
         vars.put("numOfEnemy", 10);
         vars.put("flame", 1);
         vars.put("bomb", 1);
+        vars.put("score", 0);
+        vars.put("immortality", false);
     }
 
     @Override
@@ -207,6 +221,33 @@ public class BombermanApp extends GameApplication {
             getInput().setProcessInput(false);
             inc("level", +1);
         }
+    }
+
+    private void setGridForAi() {
+        AStarGrid grid = AStarGrid.fromWorld(getGameWorld(), 31, 15,
+                TILE_SIZE, TILE_SIZE, (type) -> {
+                    if (type == BombermanType.BRICK
+                            || type == BombermanType.WALL
+                            || type == BombermanType.GRASS
+                            || type == BombermanType.CORAL
+                            || type == BombermanType.AROUND_WALL) {
+                        return CellState.NOT_WALKABLE;
+                    } else {
+                        return CellState.WALKABLE;
+                    }
+                });
+
+        AStarGrid _grid = AStarGrid.fromWorld(getGameWorld(), 31, 15,
+                TILE_SIZE, TILE_SIZE, (type) -> {
+                    if (type == BombermanType.AROUND_WALL || type == BombermanType.WALL) {
+                        return CellState.NOT_WALKABLE;
+                    } else {
+                        return CellState.WALKABLE;
+                    }
+                });
+
+        set("grid", grid);
+        set("_grid", _grid);
     }
 
 //    @Override
@@ -231,7 +272,7 @@ public class BombermanApp extends GameApplication {
 //    }
 
     private void setLevel() {
-        FXGL.setLevelFromMap("lv1demo.tmx");
+        FXGL.setLevelFromMap("bbm_level1.tmx");
     }
 }
 
