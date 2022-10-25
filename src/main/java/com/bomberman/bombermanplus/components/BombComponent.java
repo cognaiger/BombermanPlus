@@ -1,5 +1,5 @@
 package com.bomberman.bombermanplus.components;
-
+import static com.bomberman.bombermanplus.constants.GameConst.*;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
@@ -23,13 +23,7 @@ import static com.almasb.fxgl.dsl.FXGL.onCollisionEnd;
 import static com.almasb.fxgl.dsl.FXGL.spawn;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.constants.GameConst.SIZE_BLOCK;
-
-public class BombComponent extends Component {
-    private ArrayList<Entity> listFire = new ArrayList<>();
-    Entity wallBomb;
-    private AnimatedTexture texture;
-    private AnimationChannel animation;
-import static com.bomberman.bombermanplus.constants.GameConst.*;
+import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
 
 public class BombComponent extends Component {
     private ArrayList<Entity>listFire = new ArrayList<>();
@@ -54,7 +48,6 @@ public class BombComponent extends Component {
         });
 
         animation = new AnimationChannel(image("sprites.png"), 16, SIZE_BLOCK, SIZE_BLOCK,
-        animation = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(0.5), 72, 74);
         texture = new AnimatedTexture(animation);
         texture.loop();
