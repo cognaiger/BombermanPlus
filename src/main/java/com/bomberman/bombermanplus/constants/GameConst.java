@@ -1,6 +1,9 @@
 package com.bomberman.bombermanplus.constants;
 
 public class GameConst {
+    public static final int SIZE_BLOCK = 40;
+    public static final int SCREEN_WIDTH = 1080;
+    public static final int SCREEN_HEIGHT = 720;
     public static final int GAME_WORLD_WIDTH = 1488;
     public static final int GAME_WORLD_HEIGHT = 720;
 

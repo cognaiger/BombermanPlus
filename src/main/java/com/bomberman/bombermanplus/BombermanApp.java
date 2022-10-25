@@ -22,28 +22,36 @@ import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.constants.GameConst;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
+import static com.almasb.fxgl.dsl.FXGL.getGameController;
+import static com.almasb.fxgl.dsl.FXGL.getGameScene;
+import static com.almasb.fxgl.dsl.FXGL.getGameTimer;
+import static com.almasb.fxgl.dsl.FXGL.geti;
+import static com.almasb.fxgl.dsl.FXGL.set;
+import static com.almasb.fxgl.dsl.FXGL.showMessage;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.BombermanType.*;
 
 public class BombermanApp extends GameApplication {
 
     private static final int VIEW_HEIGHT = 720;
-    private static final int VIEW_WIDTH =1080;
+    private static final int VIEW_WIDTH = 1080;
 
     /* window title */
     private static final String TITLE = "BOMBERMAN";
-    private static final String VERSION ="1.0";
+    private static final String VERSION = "1.0";
 
     private static final String FONT = "Retro Gaming.ttf";
 
-    private static final int TIME_PER_LEVEL =300;
+    private static final int TIME_PER_LEVEL = 300;
     private static final int START_LEVEL = 0;
     public static boolean isSoundEnabled = true;
     private static final int MAX_LEVEL = 1;
+    private boolean requestNewGame = false;
 
     public static void main(String[] args) {                              /* entry point */
         launch(args);
@@ -182,6 +190,7 @@ public class BombermanApp extends GameApplication {
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("level", START_LEVEL);
         vars.put("speed", GameConst.SPEED);
+        vars.put("numOfEnemy", 10);
         vars.put("flame", 1);
         vars.put("bomb", 1);
         vars.put("score", 0);
@@ -201,6 +210,27 @@ public class BombermanApp extends GameApplication {
             inc("level", +1);
         }
     }
+
+//    @Override
+//    protected void onUpdate(double tpf) {
+//
+//        if (geti("time") == 0) {
+//            showMessage("Game Over leu leu!!!", () -> getGameController().gotoMainMenu());
+//        }
+//
+//        if (requestNewGame) {
+//            requestNewGame = false;
+//            getPlayer().getComponent(PlayerComponent.class).die();
+//            getGameTimer().runOnceAfter(() -> getGameScene().getViewport().fade(() -> {
+//                if (geti("life") <= 0) {
+//                    showMessage("Game Over leu leu!!!",
+//                            () -> getGameController().gotoMainMenu());
+//                }
+//                setLevel();
+//                set("immortality", false);
+//            }), Duration.seconds(0.5));
+//        }
+//    }
 
     private void setLevel() {
         FXGL.setLevelFromMap("lv1demo.tmx");

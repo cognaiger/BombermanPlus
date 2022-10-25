@@ -22,6 +22,8 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import com.bomberman.bombermanplus.components.Enemy.BalloomComponent;
+import com.bomberman.bombermanplus.components.Enemy.OnealComponent;
 import com.bomberman.bombermanplus.components.BombComponent;
 import com.bomberman.bombermanplus.components.FlameComponent;
 import com.bomberman.bombermanplus.components.PlayerComponent;
@@ -294,6 +296,32 @@ public class BombermanFactory implements EntityFactory {
                 .bbox(hitBox)
                 .view("items/portal.png")
                 .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("balloom_e")
+    public Entity newBalloom(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.BALLOOM_E)
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
+                .with(new BalloomComponent())
+                .with(new CollidableComponent(true))
+                .zIndex(2)
+                .build();
+    }
+
+    @Spawns("oneal_e")
+    public Entity newOneal(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(BombermanType.ONEAL_E)
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
+                .with(new CollidableComponent(true))
+                .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))
+                .with(new CellMoveComponent(SIZE_BLOCK, SIZE_BLOCK, ENEMY_SPEED_BASE))
+                .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))
+                .with(new OnealComponent())
+                .zIndex(2)
                 .build();
     }
 }
