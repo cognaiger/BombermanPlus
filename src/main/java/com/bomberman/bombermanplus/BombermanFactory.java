@@ -101,6 +101,9 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    /*
+     * Spawn flame.
+     */
     @Spawns("centerFlame")
     public Entity newCenterFlame(SpawnData data) {
         return entityBuilder()
@@ -217,7 +220,22 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("around_wall")
+    public Entity newArWall(SpawnData data) {
+        var width = (int) data.get("width");
+        var height = (int) data.get("height");
+
+        return entityBuilder(data)
+                .type(BombermanType.AROUND_WALL)
+                .bbox(new HitBox(BoundingShape.box(width, height)))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
     /*
+     * Spawn buff item.
+     */
     @Spawns("speedItem")
     public Entity newItem(SpawnData data) {
         return entityBuilder(data)
@@ -262,6 +280,9 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
+    /*
+     * Spawn portal.
+     */
     @Spawns("portal")
     public Entity newPortal(SpawnData data) {
         var width = (int) data.get("width");
@@ -277,7 +298,7 @@ public class BombermanFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
-     */
+
     @Spawns("balloom_e")
     public Entity newBalloom(SpawnData data) {
         return FXGL.entityBuilder(data)

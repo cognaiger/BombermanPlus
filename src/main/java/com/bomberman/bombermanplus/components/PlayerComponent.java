@@ -1,5 +1,6 @@
 package com.bomberman.bombermanplus.components;
 
+import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -63,6 +64,33 @@ public class PlayerComponent extends Component {
             return null;
         });
 
+        onCollisionBegin(BombermanType.PLAYER, BombermanType.BOMB_ITEM, (p, bombs_t) -> {
+            bombs_t.removeFromWorld();
+            inc("score", SCORE_ITEM);
+            inc("bomb", 1);
+            return null;
+        });
+
+        onCollisionBegin(BombermanType.PLAYER, BombermanType.FLAME_ITEM, (p, flame_i) -> {
+            flame_i.removeFromWorld();
+            inc("score", SCORE_ITEM);
+            inc("flame", 1);
+            return null;
+        });
+
+        onCollisionBegin(BombermanType.PLAYER, BombermanType.FLAME_PASS_ITEM, (p, flame_pass_i) -> {
+            flame_pass_i.removeFromWorld();
+            set("immortality", true);
+            flame_pass_i.removeFromWorld();
+            inc("score", SCORE_ITEM);
+            setAnimation(Skin.FLAME_PASS);
+            getGameTimer().runOnceAfter(() -> {
+                setAnimation(Skin.NORMAL);
+                set("immortality", false);
+            }, Duration.seconds(8));
+            return null;
+        });
+
         setAnimation(Skin.NORMAL);
         texture = new AnimatedTexture(aniIdleDown);
     }
@@ -75,6 +103,10 @@ public class PlayerComponent extends Component {
         this.exploreCancel = exploreCancel;
     }
 
+    /**
+     * Set animation channel based on current skin.
+     * @param skin current skin
+     */
     public void setAnimation(Skin skin) {
         aniDie = new AnimationChannel(image("sprites.png"), 16,
                 SIZE_FRAME, SIZE_FRAME, Duration.seconds(1.5), 12, 14);
