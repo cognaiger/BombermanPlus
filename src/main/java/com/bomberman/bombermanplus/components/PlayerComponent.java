@@ -12,7 +12,11 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import com.bomberman.bombermanplus.BombermanType;
 import javafx.util.Duration;
 
+import static com.almasb.fxgl.dsl.FXGL.getb;
+import static com.almasb.fxgl.dsl.FXGL.geti;
 import static com.almasb.fxgl.dsl.FXGL.image;
+import static com.almasb.fxgl.dsl.FXGL.inc;
+import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.constants.GameConst.*;
 
@@ -297,6 +301,7 @@ public class PlayerComponent extends Component {
         if (curMove != PlayerStatus.DIE) {
             getGameTimer().runOnceAfter(() -> {
                 if(!exploreCancel) {
+                    play("bomb_explored.wav");
                     bomb.getComponent(BombComponent.class).explode();
                 } else {
                     bomb.removeFromWorld();
