@@ -9,10 +9,9 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.core.collection.PropertyMap;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.level.Level;
-import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.pathfinding.CellState;
@@ -21,6 +20,7 @@ import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
 import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.constants.GameConst;
+import com.bomberman.bombermanplus.ui.BombermanHUD;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -33,6 +33,7 @@ import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.getGameScene;
 import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
+import static com.almasb.fxgl.dsl.FXGL.getWorldProperties;
 import static com.almasb.fxgl.dsl.FXGL.getb;
 import static com.almasb.fxgl.dsl.FXGL.geti;
 import static com.almasb.fxgl.dsl.FXGL.inc;
@@ -80,12 +81,11 @@ public class BombermanApp extends GameApplication {
         settings.setVersion(VERSION);
         settings.setIntroEnabled(false);
         settings.setMainMenuEnabled(true);
-        settings.setGameMenuEnabled(false);
-        settings.setPreserveResizeRatio(false);
-        settings.setManualResizeEnabled(false);
-        settings.setDeveloperMenuEnabled(false);
-        /* settings.setFontUI(FONT); */
-
+        settings.setGameMenuEnabled(true);
+        settings.setPreserveResizeRatio(true);
+        settings.setManualResizeEnabled(true);
+        settings.setDeveloperMenuEnabled(true);
+        settings.setFontUI(FONT);
         settings.setSceneFactory(new SceneFactory() {
             @NotNull
             @Override
@@ -109,6 +109,18 @@ public class BombermanApp extends GameApplication {
         FXGL.getGameWorld().addEntityFactory(new BombermanFactory());
         loadNextLevel();
         FXGL.spawn("background");
+        startCountDownTimer();
+        getWorldProperties().<Integer>addListener("time", this::killPlayerWhenTimeUp);
+    }
+
+    private void startCountDownTimer() {
+        FXGL.run(() -> inc("time", -1), Duration.seconds(1));
+    }
+
+    private void killPlayerWhenTimeUp(int old, int now) {
+        if (now == 0) {
+            onPlayerKilled();
+        }
     }
 
     /**
@@ -179,6 +191,18 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initUI() {
+        var hud = new BombermanHUD();
+        var leftMargin = 0;
+        var topMargin = 0;
+        FXGL.getGameTimer().runOnceAfter(() -> FXGL.addUINode(hud.getHUD(), leftMargin, topMargin),
+                Duration.seconds(3));
+    }
+
+    @Override
+    protected void onPreInit() {
+        getSettings().setGlobalMusicVolume(isSoundEnabled ? 0.05 : 0.0);
+        getSettings().setGlobalSoundVolume(isSoundEnabled ? 0.4 : 0.0);
+        loopBGM("title_screen.mp3");
     }
 
     /**
@@ -223,7 +247,7 @@ public class BombermanApp extends GameApplication {
      * @param portal portal
      */
     private void endLevel(Entity player, Entity portal) {
-        if (geti("numOfEnemy") < 0) {
+        if (geti("numOfEnemy") > 0) {
             return;
         }
         play("next_level.wav");
