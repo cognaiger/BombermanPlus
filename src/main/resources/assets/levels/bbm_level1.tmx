@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="31" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="8" nextobjectid="612">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="31" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="8" nextobjectid="613">
  <tileset firstgid="1" name="classic" tilewidth="48" tileheight="48" tilecount="256" columns="16">
   <image source="classic.png" trans="ff00ff" width="768" height="768"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="31" height="15" visible="0" locked="1">
+ <layer id="1" name="Tile Layer 1" width="31" height="15" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -22,7 +22,7 @@
 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6
 </data>
  </layer>
- <objectgroup id="3" name="Items" visible="0" locked="1">
+ <objectgroup id="3" name="Items">
   <object id="154" name="Item" type="speedItem" x="246" y="150" width="36" height="36"/>
   <object id="156" name="Item" type="speedItem" x="486" y="534" width="36" height="36"/>
   <object id="157" name="Item" type="speedItem" x="918" y="438" width="36" height="36"/>
@@ -34,8 +34,9 @@
   <object id="164" name="Item" type="flamePassItem" x="726" y="582" width="36" height="36"/>
   <object id="159" name="Item" type="flameItem" x="1062" y="630" width="36" height="36"/>
   <object id="599" name="Item" type="portal" x="246" y="342" width="36" height="36"/>
+  <object id="612" name="Item" type="flameItem" x="101" y="150" width="36" height="36"/>
  </objectgroup>
- <objectgroup id="6" name="Bricks" visible="0" locked="1">
+ <objectgroup id="6" name="Bricks" locked="1">
   <object id="528" name="brick" type="brick" x="48" y="624" width="48" height="48">
    <ellipse/>
   </object>
@@ -463,17 +464,17 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup id="7" name="Enemies">
+ <objectgroup id="7" name="Enemies" visible="0" locked="1">
   <object id="592" name="Enemy" type="balloom_e" x="48" y="336" width="48" height="48"/>
   <object id="593" name="Enemy" type="oneal_e" x="624" y="624" width="48" height="48"/>
   <object id="601" name="Enemy" type="oneal_e" x="1056" y="144" width="48" height="48"/>
-  <object id="521" name="Enemy" type="doria_e" x="288" y="624" width="48" height="48"/>
+  <object id="521" name="Enemy" type="balloom_e" x="288" y="624" width="48" height="48"/>
   <object id="522" name="Enemy" type="balloom_e" x="432" y="240" width="48" height="48"/>
-  <object id="523" name="Enemy" type="dahl_e" x="624" y="432" width="48" height="48"/>
+  <object id="523" name="Enemy" type="balloom_e" x="624" y="432" width="48" height="48"/>
   <object id="524" name="Enemy" type="balloom_e" x="816" y="624" width="48" height="48"/>
-  <object id="525" name="Enemy" type="pass_e" x="816" y="336" width="48" height="48"/>
+  <object id="525" name="Enemy" type="balloom_e" x="816" y="336" width="48" height="48"/>
   <object id="527" name="Enemy" type="balloom_e" x="1296" y="528" width="48" height="48"/>
-  <object id="600" name="Enemy" type="ovape_e" x="432" y="144" width="48" height="48"/>
+  <object id="600" name="Enemy" type="balloom_e" x="432" y="144" width="48" height="48"/>
  </objectgroup>
  <objectgroup id="4" name="Around Walls" visible="0" locked="1">
   <object id="414" type="around_wall" x="0" y="96" width="48" height="624"/>

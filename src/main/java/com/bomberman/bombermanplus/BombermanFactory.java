@@ -20,10 +20,12 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.BlockComponent;
 import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.BombComponent;
 import com.bomberman.bombermanplus.components.FlameComponent;
+
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
@@ -125,7 +127,7 @@ public class BombermanFactory implements EntityFactory {
                 .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
                         Color.TRANSPARENT))
                 .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
-                .with(new CollidableComponent())
+                .with(new CollidableComponent(true))
                 .zIndex(1)
                 .build();
     }
@@ -137,7 +139,7 @@ public class BombermanFactory implements EntityFactory {
                 .with(new FlameComponent(160, 162))
                 .viewWithBBox(new Rectangle(TILE_SIZE / 2.0 - 3, TILE_SIZE / 2.0 - 3,
                         Color.TRANSPARENT))
-                .atAnchored(new Point2D(0, 0), new Point2D(data.getY(), data.getY()))
+                .atAnchored(new Point2D(0, 0), new Point2D(data.getX(), data.getY()))
                 .with(new CollidableComponent(true))
                 .zIndex(1)
                 .build();

@@ -9,10 +9,9 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.core.collection.PropertyMap;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.level.Level;
-import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.pathfinding.CellState;
@@ -21,13 +20,24 @@ import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
 import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.constants.GameConst;
+import com.bomberman.bombermanplus.ui.BombermanHUD;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.getGameScene;
 import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
+import static com.almasb.fxgl.dsl.FXGL.getWorldProperties;
+import static com.almasb.fxgl.dsl.FXGL.getb;
+import static com.almasb.fxgl.dsl.FXGL.geti;
+import static com.almasb.fxgl.dsl.FXGL.inc;
+import static com.almasb.fxgl.dsl.FXGL.onCollisionBegin;
 import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGL.showMessage;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
@@ -49,7 +59,6 @@ public class BombermanApp extends GameApplication {
     private static final int TIME_PER_LEVEL = 300;
     private static final int START_LEVEL = 0;
     public static boolean isSoundEnabled = true;
-    private static final int MAX_LEVEL = 1;
     private boolean requestNewGame = false;
 
     public static void main(String[] args) {                              /* entry point */
@@ -72,12 +81,11 @@ public class BombermanApp extends GameApplication {
         settings.setVersion(VERSION);
         settings.setIntroEnabled(false);
         settings.setMainMenuEnabled(true);
-        settings.setGameMenuEnabled(false);
-        settings.setPreserveResizeRatio(false);
-        settings.setManualResizeEnabled(false);
-        settings.setDeveloperMenuEnabled(false);
-        /* settings.setFontUI(FONT); */
-
+        settings.setGameMenuEnabled(true);
+        settings.setPreserveResizeRatio(true);
+        settings.setManualResizeEnabled(true);
+        settings.setDeveloperMenuEnabled(true);
+        settings.setFontUI(FONT);
         settings.setSceneFactory(new SceneFactory() {
             @NotNull
             @Override
@@ -91,9 +99,6 @@ public class BombermanApp extends GameApplication {
                 return new BombermanGameMenu();
             }
         });
-
-
-
     }
 
     /**
@@ -102,26 +107,21 @@ public class BombermanApp extends GameApplication {
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new BombermanFactory());
-        Level level = getAssetLoader().loadLevel("bbm_level1.tmx", new TMXLevelLoader());
-        getGameWorld().setLevel(level);
-
-        Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT);
-        viewport.bindToEntity(
-                getPlayer(),
-                FXGL.getAppWidth() / 2.0f,
-                FXGL.getAppHeight() / 2.0f);
-        viewport.setLazy(true);
-        set("time", TIME_PER_LEVEL);
-        set("bomb", 1);
-        set("flame", 1);
-        set("numOfEnemy", 10);
-        setGridForAi();
-
+        loadNextLevel();
         FXGL.spawn("background");
+        startCountDownTimer();
+        getWorldProperties().<Integer>addListener("time", this::killPlayerWhenTimeUp);
     }
 
+    private void startCountDownTimer() {
+        FXGL.run(() -> inc("time", -1), Duration.seconds(1));
+    }
 
+    private void killPlayerWhenTimeUp(int old, int now) {
+        if (now == 0) {
+            onPlayerKilled();
+        }
+    }
 
     /**
      * Input handling for player.
@@ -191,6 +191,18 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initUI() {
+        var hud = new BombermanHUD();
+        var leftMargin = 0;
+        var topMargin = 0;
+        FXGL.getGameTimer().runOnceAfter(() -> FXGL.addUINode(hud.getHUD(), leftMargin, topMargin),
+                Duration.seconds(3));
+    }
+
+    @Override
+    protected void onPreInit() {
+        getSettings().setGlobalMusicVolume(isSoundEnabled ? 0.05 : 0.0);
+        getSettings().setGlobalSoundVolume(isSoundEnabled ? 0.4 : 0.0);
+        loopBGM("title_screen.mp3");
     }
 
     /**
@@ -207,19 +219,68 @@ public class BombermanApp extends GameApplication {
         vars.put("bomb", 1);
         vars.put("score", 0);
         vars.put("immortality", false);
+        vars.put("life", 3);
+        vars.put("time", TIME_PER_LEVEL);
     }
 
+    /**
+     * Init physics world.
+     * Handle collision between player and dangerous objects.
+     */
     @Override
     protected void initPhysics() {
         getPhysicsWorld().setGravity(0, 0);
+
+        FXGL.onCollisionBegin(PLAYER, PORTAL, this::endLevel);
+        FXGL.onCollisionBegin(PLAYER, FLAME, (p, f) -> onPlayerKilled());
+        onCollisionBegin(PLAYER, BALLOOM_E, (p, b) -> onPlayerKilled());
+        onCollisionBegin(PLAYER, DAHL_E, (p, dh) -> onPlayerKilled());
+        onCollisionBegin(PLAYER, ONEAL_E, (p, o) -> onPlayerKilled());
+        onCollisionBegin(PLAYER, DORIA_E, (p, d) -> onPlayerKilled());
+        onCollisionBegin(PLAYER, OVAPE_E, (p, o) -> onPlayerKilled());
+        onCollisionBegin(PLAYER, PASS_E, (p, pa) -> onPlayerKilled());
+    }
+
+    /**
+     * If enemies are clear then end.
+     * @param player player
+     * @param portal portal
+     */
+    private void endLevel(Entity player, Entity portal) {
+        if (geti("numOfEnemy") > 0) {
+            return;
+        }
+        play("next_level.wav");
+        getPlayer().getComponent(PlayerComponent.class).setExploreCancel(true);
+        var timer = FXGL.getGameTimer();
+        timer.runOnceAfter(this::fadeToNextLevel, Duration.seconds(1));
+    }
+
+    private void fadeToNextLevel() {
+        var gameScene = FXGL.getGameScene();
+        var viewPort = gameScene.getViewport();
+        viewPort.fade(this::loadNextLevel);
     }
 
     private void loadNextLevel() {
         if (FXGL.geti("level") >= MAX_LEVEL) {
-            showMessage("You win!");
+            showMessage("You win!", () -> getGameController().gotoMainMenu());
         } else {
+            getSettings().setGlobalMusicVolume(0);
             getInput().setProcessInput(false);
+
+            play("stage_start.wav");
             inc("level", +1);
+            AnchorPane pane = creStartStage();
+            FXGL.addUINode(pane);
+
+            /* cre start stage */
+            getGameTimer().runOnceAfter(() -> {
+                FXGL.removeUINode(pane);
+                getSettings().setGlobalMusicVolume(0.05);
+                getInput().setProcessInput(true);
+                setLevel();
+            }, Duration.seconds(3));
         }
     }
 
@@ -250,29 +311,67 @@ public class BombermanApp extends GameApplication {
         set("_grid", _grid);
     }
 
-//    @Override
-//    protected void onUpdate(double tpf) {
-//
-//        if (geti("time") == 0) {
-//            showMessage("Game Over leu leu!!!", () -> getGameController().gotoMainMenu());
-//        }
-//
-//        if (requestNewGame) {
-//            requestNewGame = false;
-//            getPlayer().getComponent(PlayerComponent.class).die();
-//            getGameTimer().runOnceAfter(() -> getGameScene().getViewport().fade(() -> {
-//                if (geti("life") <= 0) {
-//                    showMessage("Game Over leu leu!!!",
-//                            () -> getGameController().gotoMainMenu());
-//                }
-//                setLevel();
-//                set("immortality", false);
-//            }), Duration.seconds(0.5));
-//        }
-//    }
+    private AnchorPane creStartStage() {
+        AnchorPane pane =new AnchorPane();
+        Shape shape = new Rectangle(1080, 720, Color.BLACK);
+
+        var text = FXGL.getUIFactoryService().newText("STAGE" + geti("level"), Color.WHITE, 40);
+        text.setTranslateX((SCREEN_WIDTH >> 1) - 80);
+        text.setTranslateY((SCREEN_HEIGHT >> 1) - 20);
+        pane.getChildren().addAll(shape, text);
+
+        return pane;
+    }
+
+    @Override
+    protected void onUpdate(double tpf) {
+
+        if (geti("time") == 0) {
+            showMessage("Game Over leu leu!!!", () -> getGameController().gotoMainMenu());
+        }
+
+        if (requestNewGame) {
+            requestNewGame = false;
+            getPlayer().getComponent(PlayerComponent.class).die();
+            getGameTimer().runOnceAfter(() -> getGameScene().getViewport().fade(() -> {
+                if (geti("life") <= 0) {
+                    showMessage("Game Over leu leu!!!",
+                            () -> getGameController().gotoMainMenu());
+                }
+                setLevel();
+                set("immortality", false);
+            }), Duration.seconds(0.5));
+        }
+    }
 
     private void setLevel() {
-        FXGL.setLevelFromMap("bbm_level1.tmx");
+        FXGL.setLevelFromMap("bbm_level" + geti("level") + ".tmx");
+
+        Viewport viewport = getGameScene().getViewport();
+        viewport.setBounds(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT);
+        viewport.bindToEntity(
+                getPlayer(),
+                FXGL.getAppWidth() / 2.0f,
+                FXGL.getAppHeight() / 2.0f);
+        viewport.setLazy(true);
+        set("time", TIME_PER_LEVEL);
+        set("bomb", 1);
+        set("flame", 1);
+        set("numOfEnemy", 10);
+        setGridForAi();
+    }
+
+    /**
+     * Kill player.
+     */
+    private void onPlayerKilled() {
+        if (!getb("immortality")) {
+            set("immortality", true);
+            if (geti("life") > 0) inc("life", -1);
+            set("score", 0);
+            getPlayer().getComponent(PlayerComponent.class).setExploreCancel(true);
+            requestNewGame = true;
+        }
     }
 }
 

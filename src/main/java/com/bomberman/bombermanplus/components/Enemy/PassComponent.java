@@ -53,7 +53,6 @@ public class PassComponent extends OnealComponent{
         int PASS_SCORE = 300;
         showScore(PASS_SCORE);
         inc("score", PASS_SCORE);
-
         die = true;
         dx = 0;
         dy = 0;

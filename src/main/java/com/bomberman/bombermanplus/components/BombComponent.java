@@ -17,9 +17,8 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
 
 public class BombComponent extends Component {
-    private ArrayList<Entity>listFire = new ArrayList<>();
-    Entity wallBomb;
 
+    private ArrayList<Entity> listFire = new ArrayList<>();               /* contain flame of bombs */
     private AnimatedTexture texture;
     private AnimationChannel animation;
 
@@ -27,6 +26,8 @@ public class BombComponent extends Component {
     private List<Entity> listLeftBlock = new ArrayList<>();
     private List<Entity> listAboveBlock = new ArrayList<>();
     private List<Entity> listBottomBlock = new ArrayList<>();
+
+    Entity wallBomb;
 
     /**
      * Constructor: add sprite for bomb.
@@ -52,13 +53,16 @@ public class BombComponent extends Component {
         entity.getViewComponent().addChild(texture);
     }
 
-
+    /**
+     * Handle bomb explosion.
+     * Add flame into listFire.
+     */
     public void explode() {
         int flameLen = geti("flame");
 
         listFire.add(spawn("centerFlame", new SpawnData(entity.getX(), entity.getY())));
 
-        /* default flame length */
+        /* default length */
         if (flameLen == 1) {
             listFire.add(spawn("rightEFlame",
                     new SpawnData(entity.getX() + TILE_SIZE, entity.getY())));
@@ -78,6 +82,9 @@ public class BombComponent extends Component {
         clearFlame();
     }
 
+    /**
+     * Clear flame, bomb and wall bomb.
+     */
     public void clearFlame() {
         FXGL.getGameTimer().runOnceAfter(() -> {
             for (Entity value : listFire) {

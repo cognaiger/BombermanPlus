@@ -51,7 +51,6 @@ public class DoriaComponent extends OnealComponent{
         int DORIA_SCORE = 500;
         inc("score", DORIA_SCORE);
         showScore(DORIA_SCORE);
-
         die = true;
         dx = 0;
         dy = 0;
