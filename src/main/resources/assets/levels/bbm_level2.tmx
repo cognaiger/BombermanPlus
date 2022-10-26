@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="31" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="8" nextobjectid="609">
+ <tileset firstgid="1" name="forest_48" tilewidth="48" tileheight="48" tilecount="288" columns="16">
+  <image source="forest_48.png" trans="ff00ff" width="768" height="864"/>
+ </tileset>
+ <layer id="1" name="Floor" width="31" height="15" locked="1">
+  <data encoding="csv">
+282,280,283,280,280,281,281,280,280,282,280,280,282,280,280,281,280,280,283,280,280,280,282,280,280,283,280,280,280,280,282,
+280,281,280,282,280,280,280,282,280,280,280,281,280,282,280,280,280,282,280,280,280,283,280,280,282,280,280,280,283,280,280,
+281,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,281,
+280,280,280,280,280,280,280,283,280,280,280,280,280,280,280,280,280,280,280,280,280,283,280,280,280,281,280,280,280,280,280,
+280,280,280,280,280,283,280,280,280,282,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,282,280,280,280,
+280,280,280,282,280,280,280,280,280,280,280,280,280,281,280,280,280,280,281,280,280,280,280,282,280,280,280,280,280,280,280,
+280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,
+280,281,280,280,280,281,280,280,280,280,280,283,280,280,280,282,280,280,280,280,280,280,280,280,280,280,283,280,280,280,280,
+280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,
+280,280,281,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,281,280,280,280,280,280,280,281,280,280,
+280,280,280,280,280,280,280,280,280,283,280,280,280,280,280,280,280,280,280,280,280,280,280,282,280,280,280,280,280,280,280,
+280,280,280,280,280,280,280,282,280,280,280,280,282,280,280,283,280,280,280,280,280,282,280,280,280,280,280,280,280,280,280,
+280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,
+280,280,280,280,280,281,280,280,280,280,280,280,282,280,280,280,280,280,280,280,280,280,280,283,280,280,280,280,280,280,280,
+281,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,280,281
+</data>
+ </layer>
+ <layer id="2" name="Object Tiles" width="31" height="15" locked="1">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+150,133,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,135,149,
+132,0,282,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,215,0,0,0,0,0,0,0,0,0,132,
+148,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,148,
+148,281,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,
+148,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,148,
+148,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,
+148,214,215,0,214,0,215,0,214,0,215,214,214,0,215,0,214,0,215,215,214,0,215,0,214,0,215,0,214,215,148,
+148,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,
+148,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,148,
+148,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,
+148,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,215,0,214,0,148,
+164,0,0,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,215,0,0,0,0,0,0,0,0,0,164,
+149,133,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,135,150
+</data>
+ </layer>
+ <objectgroup id="4" name="Items" locked="1">
+  <object id="144" name="Item" type="speedItem" x="246" y="152" width="36" height="36"/>
+  <object id="146" name="Item" type="flamePassItem" x="246" y="488" width="36" height="36"/>
+  <object id="147" name="Item" type="flameItem" x="438" y="632" width="36" height="36"/>
+  <object id="148" name="Item" type="bombsItem" x="822" y="632" width="36" height="36"/>
+  <object id="149" name="Item" type="bombsItem" x="870" y="152" width="36" height="36"/>
+  <object id="150" name="Item" type="flamePassItem" x="726" y="248" width="36" height="36"/>
+  <object id="606" name="Item" type="flamePassItem" x="1254" y="536" width="36" height="36"/>
+  <object id="151" name="Item" type="portal" x="1110" y="536" width="36" height="36"/>
+  <object id="152" name="Item" type="speedItem" x="1398" y="632" width="36" height="36"/>
+  <object id="153" name="Item" type="speedItem" x="1014" y="344" width="36" height="36"/>
+  <object id="154" name="Item" type="flameItem" x="102" y="632" width="36" height="36"/>
+ </objectgroup>
+ <objectgroup id="3" name="Grasses" locked="1">
+  <object id="6" type="player" x="48" y="144" width="48" height="48"/>
+  <object id="77" type="grass" x="48" y="624" width="48" height="48"/>
+  <object id="86" type="grass" x="672" y="240" width="48" height="48"/>
+  <object id="89" type="grass" x="528" y="528" width="48" height="48"/>
+  <object id="92" type="grass" x="816" y="624" width="48" height="48"/>
+  <object id="142" type="grass" x="816" y="432" width="48" height="48"/>
+  <object id="129" type="grass" x="816" y="528" width="48" height="48"/>
+  <object id="130" type="grass" x="624" y="384" width="48" height="48"/>
+  <object id="138" type="grass" x="336" y="192" width="48" height="48"/>
+  <object id="132" type="grass" x="672" y="432" width="48" height="48"/>
+  <object id="133" type="grass" x="672" y="432" width="48" height="48"/>
+  <object id="137" type="grass" x="384" y="240" width="48" height="48"/>
+  <object id="139" type="grass" x="624" y="336" width="48" height="48"/>
+  <object id="140" type="grass" x="528" y="288" width="48" height="48"/>
+  <object id="135" type="grass" x="480" y="432" width="48" height="48"/>
+  <object id="134" type="grass" x="384" y="336" width="48" height="48"/>
+  <object id="131" type="grass" x="576" y="432" width="48" height="48"/>
+  <object id="136" type="grass" x="288" y="240" width="48" height="48"/>
+  <object id="608" type="grass" x="144" y="288" width="48" height="48"/>
+  <object id="93" type="grass" x="720" y="624" width="48" height="48"/>
+  <object id="79" type="grass" x="96" y="624" width="48" height="48"/>
+  <object id="82" type="grass" x="528" y="144" width="48" height="48"/>
+  <object id="85" type="grass" x="720" y="240" width="48" height="48"/>
+  <object id="88" type="grass" x="576" y="528" width="48" height="48"/>
+  <object id="91" type="grass" x="864" y="624" width="48" height="48"/>
+  <object id="80" type="grass" x="144" y="624" width="48" height="48"/>
+  <object id="94" type="grass" x="240" y="432" width="48" height="48"/>
+  <object id="103" type="grass" x="1008" y="336" width="48" height="48"/>
+  <object id="106" type="grass" x="1104" y="528" width="48" height="48"/>
+  <object id="109" type="grass" x="240" y="144" width="48" height="48"/>
+  <object id="95" type="grass" x="240" y="480" width="48" height="48"/>
+  <object id="110" type="grass" x="336" y="624" width="48" height="48"/>
+  <object id="111" type="grass" x="432" y="624" width="48" height="48"/>
+  <object id="112" type="grass" x="48" y="528" width="48" height="48"/>
+  <object id="113" type="grass" x="48" y="336" width="48" height="48"/>
+  <object id="114" type="grass" x="288" y="144" width="48" height="48"/>
+  <object id="115" type="grass" x="768" y="144" width="48" height="48"/>
+  <object id="116" type="grass" x="816" y="144" width="48" height="48"/>
+  <object id="117" type="grass" x="864" y="144" width="48" height="48"/>
+  <object id="118" type="grass" x="912" y="144" width="48" height="48"/>
+  <object id="119" type="grass" x="1008" y="144" width="48" height="48"/>
+  <object id="102" type="grass" x="1008" y="384" width="48" height="48"/>
+  <object id="105" type="grass" x="1104" y="576" width="48" height="48"/>
+  <object id="108" type="grass" x="240" y="192" width="48" height="48"/>
+  <object id="96" type="grass" x="192" y="432" width="48" height="48"/>
+  <object id="101" type="grass" x="960" y="336" width="48" height="48"/>
+  <object id="104" type="grass" x="1056" y="528" width="48" height="48"/>
+  <object id="107" type="grass" x="192" y="144" width="48" height="48"/>
+  <object id="97" type="grass" x="336" y="432" width="48" height="48"/>
+  <object id="100" type="grass" x="1104" y="336" width="48" height="48"/>
+  <object id="121" type="grass" x="1392" y="192" width="48" height="48"/>
+  <object id="122" type="grass" x="1344" y="144" width="48" height="48"/>
+  <object id="123" type="grass" x="1296" y="192" width="48" height="48"/>
+  <object id="124" type="grass" x="1392" y="624" width="48" height="48"/>
+  <object id="125" type="grass" x="1296" y="624" width="48" height="48"/>
+  <object id="126" type="grass" x="1392" y="528" width="48" height="48"/>
+  <object id="127" type="grass" x="1392" y="576" width="48" height="48"/>
+  <object id="128" type="grass" x="1248" y="528" width="48" height="48"/>
+  <object id="98" type="grass" x="240" y="336" width="48" height="48"/>
+  <object id="99" type="grass" x="1008" y="240" width="48" height="48"/>
+  <object id="81" type="grass" x="576" y="144" width="48" height="48"/>
+  <object id="84" type="grass" x="768" y="240" width="48" height="48"/>
+  <object id="87" type="grass" x="624" y="528" width="48" height="48"/>
+  <object id="90" type="grass" x="912" y="624" width="48" height="48"/>
+  <object id="141" type="grass" x="912" y="432" width="48" height="48"/>
+  <object id="143" type="grass" x="1104" y="432" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup id="7" name="enemies">
+  <object id="586" name="Enemy" type="dahl_e" x="336" y="336" width="48" height="48"/>
+  <object id="587" name="Enemy" type="balloom_e" x="432" y="528" width="48" height="48"/>
+  <object id="588" name="Enemy" type="oneal_e" x="768" y="336" width="48" height="48"/>
+  <object id="589" name="Enemy" type="dahl_e" x="48" y="432" width="48" height="48"/>
+  <object id="590" name="Enemy" type="pass_e" x="384" y="144" width="48" height="48"/>
+  <object id="591" name="Enemy" type="pass_e" x="1200" y="144" width="48" height="48"/>
+  <object id="595" name="Enemy" type="doria_e" x="528" y="240" width="48" height="48"/>
+  <object id="596" name="Enemy" type="doria_e" x="1296" y="288" width="48" height="48"/>
+  <object id="592" name="Enemy" type="balloom_e" x="1296" y="528" width="48" height="48"/>
+  <object id="593" name="Enemy" type="oneal_e" x="1056" y="624" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup id="5" name="Walls" locked="1">
+  <object id="505" type="wall" x="96" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="506" type="wall" x="192" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="507" type="wall" x="288" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="508" type="wall" x="384" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="509" type="wall" x="480" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="510" type="wall" x="576" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="511" type="wall" x="672" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="512" type="wall" x="768" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="513" type="wall" x="864" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="514" type="wall" x="960" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="515" type="wall" x="1056" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="516" type="wall" x="1152" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="517" type="wall" x="1248" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="518" type="wall" x="1344" y="192" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="519" type="wall" x="96" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="520" type="wall" x="96" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="597" type="wall" x="48" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="522" type="wall" x="96" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="523" type="wall" x="96" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="524" type="wall" x="192" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="525" type="wall" x="192" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="526" type="wall" x="192" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="527" type="wall" x="192" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="528" type="wall" x="288" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="529" type="wall" x="288" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="530" type="wall" x="288" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="531" type="wall" x="288" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="532" type="wall" x="384" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="533" type="wall" x="384" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="534" type="wall" x="384" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="535" type="wall" x="384" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="536" type="wall" x="480" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="537" type="wall" x="480" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="604" type="wall" x="528" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="538" type="wall" x="480" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="539" type="wall" x="480" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="599" type="wall" x="960" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="600" type="wall" x="480" y="624" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="601" type="wall" x="480" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="602" type="wall" x="960" y="144" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="540" type="wall" x="576" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="541" type="wall" x="576" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="543" type="wall" x="576" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="544" type="wall" x="576" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="545" type="wall" x="672" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="546" type="wall" x="672" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="547" type="wall" x="672" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="548" type="wall" x="672" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="549" type="wall" x="768" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="550" type="wall" x="768" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="551" type="wall" x="768" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="553" type="wall" x="768" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="554" type="wall" x="864" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="555" type="wall" x="864" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="556" type="wall" x="864" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="557" type="wall" x="864" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="558" type="wall" x="960" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="559" type="wall" x="960" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="561" type="wall" x="960" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="605" type="wall" x="912" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="562" type="wall" x="960" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="563" type="wall" x="1056" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="564" type="wall" x="1056" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="565" type="wall" x="1056" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="566" type="wall" x="1056" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="567" type="wall" x="1248" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="568" type="wall" x="1152" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="570" type="wall" x="1152" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="571" type="wall" x="1152" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="572" type="wall" x="1152" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="573" type="wall" x="1248" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="574" type="wall" x="1344" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="575" type="wall" x="1248" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="576" type="wall" x="1344" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="603" type="wall" x="1392" y="384" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="577" type="wall" x="1248" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="578" type="wall" x="1344" y="480" width="48" height="48">
+   <ellipse/>
+  </object>
+  <object id="579" type="wall" x="1344" y="576" width="48" height="48">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Around Walls" locked="1">
+  <object id="581" type="around_wall" x="0" y="96" width="48" height="624"/>
+  <object id="583" type="around_wall" x="48" y="96" width="1440" height="48"/>
+  <object id="584" type="around_wall" x="1440" y="144" width="48" height="576"/>
+  <object id="585" type="around_wall" x="48" y="672" width="1392" height="48"/>
+ </objectgroup>
+</map>
