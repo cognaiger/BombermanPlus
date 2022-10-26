@@ -2,8 +2,6 @@ package com.bomberman.bombermanplus.components.Enemy;
 
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.bomberman.bombermanplus.BombermanType;
-
-
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -34,13 +32,13 @@ public class DahlComponent extends NormalEnemy {
 
     @Override
     protected void setAnimationMove() {
-        animDie = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animDie = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(ANIM_TIME), 54, 54);
-        animWalkRight = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animWalkRight = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(ANIM_TIME), 51, 53);
-        animWalkLeft = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animWalkLeft = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(ANIM_TIME), 48, 50);
-        animStop = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animStop = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(1), 48, 53);
     }
 

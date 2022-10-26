@@ -1,6 +1,5 @@
 package com.bomberman.bombermanplus.components.Enemy;
 
-
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.bomberman.bombermanplus.BombermanType;
 import javafx.util.Duration;
@@ -48,13 +47,13 @@ public class OvapeComponent extends NormalEnemy {
 
     @Override
     protected void setAnimationMove() {
-        animDie = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animDie = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(ANIM_TIME), 86, 86);
-        animWalkRight = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animWalkRight = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(ANIM_TIME), 83, 85);
-        animWalkLeft = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animWalkLeft = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(ANIM_TIME), 80, 82);
-        animStop = new AnimationChannel(image("sprites.png"), 16, SIZE_FLAME, SIZE_FLAME,
+        animStop = new AnimationChannel(image("sprites.png"), 16, TILE_SIZE, TILE_SIZE,
                 Duration.seconds(1), 80, 85);
     }
 

@@ -22,8 +22,7 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.BlockComponent;
-import com.bomberman.bombermanplus.components.Enemy.BalloomComponent;
-import com.bomberman.bombermanplus.components.Enemy.OnealComponent;
+import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.BombComponent;
 import com.bomberman.bombermanplus.components.FlameComponent;
 
@@ -414,8 +413,8 @@ public class BombermanFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("dahn_e")
-    public Entity newDahn(SpawnData data) {
+    @Spawns("dahl_e")
+    public Entity newDahl(SpawnData data) {
         return FXGL.entityBuilder(data)
                 .type(BombermanType.DAHL_E)
                 .bbox(new HitBox(BoundingShape.circle(radius - 2)))
@@ -425,6 +424,7 @@ public class BombermanFactory implements EntityFactory {
                 .zIndex(2)
                 .build();
     }
+
     @Spawns("ovape_e")
     public Entity newOvape(SpawnData data) {
         return FXGL.entityBuilder(data)
@@ -436,6 +436,7 @@ public class BombermanFactory implements EntityFactory {
                 .zIndex(2)
                 .build();
     }
+
     @Spawns("oneal_e")
     public Entity newOneal(SpawnData data) {
         return FXGL.entityBuilder(data)
