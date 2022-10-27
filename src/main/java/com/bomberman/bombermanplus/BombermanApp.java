@@ -20,6 +20,7 @@ import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.constants.GameConst;
 import com.bomberman.bombermanplus.ui.BombermanHUD;
+import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
