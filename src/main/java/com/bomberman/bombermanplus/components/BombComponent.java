@@ -14,7 +14,7 @@ import java.util.List;
 import static com.almasb.fxgl.dsl.FXGL.onCollisionEnd;
 import static com.almasb.fxgl.dsl.FXGL.spawn;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
-import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
+import static com.bomberman.bombermanplus.Config.TILE_SIZE;
 
 public class BombComponent extends Component {
 

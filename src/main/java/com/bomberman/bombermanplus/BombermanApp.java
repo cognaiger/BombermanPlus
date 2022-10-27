@@ -18,7 +18,6 @@ import com.almasb.fxgl.pathfinding.astar.AStarGrid;
 import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
 import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import com.bomberman.bombermanplus.components.PlayerComponent;
-import com.bomberman.bombermanplus.constants.GameConst;
 import com.bomberman.bombermanplus.ui.BombermanHUD;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
@@ -42,21 +41,9 @@ import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGL.showMessage;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.BombermanType.*;
-import static com.bomberman.bombermanplus.constants.GameConst.*;
-import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
 
 public class BombermanApp extends GameApplication {
 
-    private static final int VIEW_HEIGHT = 720;
-    private static final int VIEW_WIDTH = 1080;
-
-    /* window title */
-    private static final String TITLE = "BOMBERMAN";
-    private static final String VERSION = "1.0";
-    private static final String FONT = "Retro Gaming.ttf";
-
-    private static final int TIME_PER_LEVEL = 300;
-    private static final int START_LEVEL = 0;
     public static boolean isSoundEnabled = true;
     private boolean requestNewGame = false;
 
@@ -74,17 +61,17 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setHeight(VIEW_HEIGHT);
-        settings.setWidth(VIEW_WIDTH);
-        settings.setTitle(TITLE);
-        settings.setVersion(VERSION);
+        settings.setHeight(Config.SCREEN_HEIGHT);
+        settings.setWidth(Config.SCREEN_WIDTH);
+        settings.setTitle(Config.TITLE);
+        settings.setVersion(Config.VERSION);
         settings.setIntroEnabled(false);
         settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(true);
         settings.setPreserveResizeRatio(true);
         settings.setManualResizeEnabled(true);
         settings.setDeveloperMenuEnabled(true);
-        settings.setFontUI(FONT);
+        settings.setFontUI(Config.FONT);
         settings.setSceneFactory(new SceneFactory() {
             @NotNull
             @Override
@@ -207,19 +194,19 @@ public class BombermanApp extends GameApplication {
     /**
      * Game variable.
      * Can be accessed and modified from any part of game.
-     * @param vars
+     * @param vars game variable
      */
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("level", START_LEVEL);
-        vars.put("speed", GameConst.SPEED);
-        vars.put("numOfEnemy", 10);
+        vars.put("level", Config.START_LEVEL);
+        vars.put("speed", Config.SPEED);
+        vars.put("numOfEnemy", Config.NUM_OF_ENEMIES);
         vars.put("flame", 1);
         vars.put("bomb", 1);
         vars.put("score", 0);
         vars.put("immortality", false);
         vars.put("life", 3);
-        vars.put("time", TIME_PER_LEVEL);
+        vars.put("time", Config.TIME_PER_LEVEL);
     }
 
     /**
@@ -262,7 +249,7 @@ public class BombermanApp extends GameApplication {
     }
 
     private void loadNextLevel() {
-        if (FXGL.geti("level") >= MAX_LEVEL) {
+        if (FXGL.geti("level") >= Config.MAX_LEVEL) {
             showMessage("You win!", () -> getGameController().gotoMainMenu());
         } else {
             getSettings().setGlobalMusicVolume(0);
@@ -285,7 +272,7 @@ public class BombermanApp extends GameApplication {
 
     private void setGridForAi() {
         AStarGrid grid = AStarGrid.fromWorld(getGameWorld(), 31, 15,
-                TILE_SIZE, TILE_SIZE, (type) -> {
+                Config.TILE_SIZE, Config.TILE_SIZE, (type) -> {
                     if (type == BombermanType.BRICK
                             || type == BombermanType.WALL
                             || type == BombermanType.GRASS
@@ -298,7 +285,7 @@ public class BombermanApp extends GameApplication {
                 });
 
         AStarGrid _grid = AStarGrid.fromWorld(getGameWorld(), 31, 15,
-                TILE_SIZE, TILE_SIZE, (type) -> {
+                Config.TILE_SIZE, Config.TILE_SIZE, (type) -> {
                     if (type == BombermanType.AROUND_WALL || type == BombermanType.WALL) {
                         return CellState.NOT_WALKABLE;
                     } else {
@@ -314,9 +301,9 @@ public class BombermanApp extends GameApplication {
         AnchorPane pane =new AnchorPane();
         Shape shape = new Rectangle(1080, 720, Color.BLACK);
 
-        var text = FXGL.getUIFactoryService().newText("STAGE " + geti("level"), Color.WHITE, 40);
-        text.setTranslateX((SCREEN_WIDTH >> 1) - 80);
-        text.setTranslateY((SCREEN_HEIGHT >> 1) - 20);
+        var text = FXGL.getUIFactoryService().newText("STAGE" + geti("level"), Color.WHITE, 40);
+        text.setTranslateX((Config.SCREEN_WIDTH >> 1) - 80);
+        text.setTranslateY((Config.SCREEN_HEIGHT >> 1) - 20);
         pane.getChildren().addAll(shape, text);
 
         return pane;
@@ -347,7 +334,7 @@ public class BombermanApp extends GameApplication {
         FXGL.setLevelFromMap("bbm_level" + geti("level") + ".tmx");
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT);
+        viewport.setBounds(0, 0, Config.GAME_WORLD_WIDTH, Config.GAME_WORLD_HEIGHT);
         viewport.bindToEntity(
                 getPlayer(),
                 FXGL.getAppWidth() / 2.0f,
@@ -355,10 +342,10 @@ public class BombermanApp extends GameApplication {
         viewport.setLazy(true);
 
         /* reset level state */
-        set("time", TIME_PER_LEVEL);
+        set("time", Config.TIME_PER_LEVEL);
         set("bomb", 1);
         set("flame", 1);
-        set("numOfEnemy", 10);
+        set("numOfEnemy", Config.NUM_OF_ENEMIES);
         setGridForAi();
     }
 

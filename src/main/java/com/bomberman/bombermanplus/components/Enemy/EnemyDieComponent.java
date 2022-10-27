@@ -6,7 +6,7 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
-import static com.bomberman.bombermanplus.constants.GameConst.TILE_SIZE;
+import static com.bomberman.bombermanplus.Config.TILE_SIZE;
 
 public class EnemyDieComponent extends Component {
     private final AnimatedTexture texture;
