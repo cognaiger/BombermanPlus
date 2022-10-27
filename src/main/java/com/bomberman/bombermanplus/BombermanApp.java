@@ -9,7 +9,6 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.core.collection.PropertyMap;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.Input;
@@ -53,7 +52,6 @@ public class BombermanApp extends GameApplication {
     /* window title */
     private static final String TITLE = "BOMBERMAN";
     private static final String VERSION = "1.0";
-
     private static final String FONT = "Retro Gaming.ttf";
 
     private static final int TIME_PER_LEVEL = 300;
@@ -242,7 +240,7 @@ public class BombermanApp extends GameApplication {
     }
 
     /**
-     * If enemies are clear then end.
+     * If enemies are clear and player collides portal then end.
      * @param player player
      * @param portal portal
      */
@@ -354,6 +352,8 @@ public class BombermanApp extends GameApplication {
                 FXGL.getAppWidth() / 2.0f,
                 FXGL.getAppHeight() / 2.0f);
         viewport.setLazy(true);
+
+        /* reset level state */
         set("time", TIME_PER_LEVEL);
         set("bomb", 1);
         set("flame", 1);

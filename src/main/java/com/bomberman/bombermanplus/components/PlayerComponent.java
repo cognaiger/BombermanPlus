@@ -56,6 +56,7 @@ public class PlayerComponent extends Component {
         physics.setGravity(0, 0);
 
         onCollisionBegin(BombermanType.PLAYER, BombermanType.SPEED_ITEM, (p, speed_i) -> {
+            play("power_up.wav");
             speed_i.removeFromWorld();
             inc("score", SCORE_ITEM);
             inc("speed", SPEED / 3);
@@ -69,6 +70,7 @@ public class PlayerComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.PLAYER, BombermanType.BOMB_ITEM, (p, bombs_t) -> {
+            play("power_up.wav");
             bombs_t.removeFromWorld();
             inc("score", SCORE_ITEM);
             inc("bomb", 1);
@@ -76,6 +78,7 @@ public class PlayerComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.PLAYER, BombermanType.FLAME_ITEM, (p, flame_i) -> {
+            play("power_up.wav");
             flame_i.removeFromWorld();
             inc("score", SCORE_ITEM);
             inc("flame", 1);
@@ -83,6 +86,7 @@ public class PlayerComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.PLAYER, BombermanType.FLAME_PASS_ITEM, (p, flame_pass_i) -> {
+            play("power_up.wav");
             flame_pass_i.removeFromWorld();
             set("immortality", true);
             flame_pass_i.removeFromWorld();
@@ -213,15 +217,13 @@ public class PlayerComponent extends Component {
         lastY = entity.getY();
         if (timeWalk > 0.6) {
             timeWalk = 0;
-            /*
             if (!(dx == 0 && dy == 0)) {
                 if (curMove == PlayerStatus.DOWN || curMove == PlayerStatus.UP) {
-                    play("");
+                    play("walk_1.wav");
                 } else {
-                    play("");
+                    play("walk_2.wav");
                 }
             }
-             */
         }
     }
 
@@ -285,6 +287,7 @@ public class PlayerComponent extends Component {
      * Place bomb and explode.
      */
     public void placeBomb() {
+        play("placed_bomb.wav");
         if (bombsPlaced == geti("bomb")) {
             return;
         }
@@ -301,7 +304,7 @@ public class PlayerComponent extends Component {
         if (curMove != PlayerStatus.DIE) {
             getGameTimer().runOnceAfter(() -> {
                 if(!exploreCancel) {
-                    play("bomb_explored.wav");
+                    play("bomb_exploded.wav");
                     bomb.getComponent(BombComponent.class).explode();
                 } else {
                     bomb.removeFromWorld();
