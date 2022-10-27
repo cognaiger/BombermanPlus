@@ -12,13 +12,12 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import com.bomberman.bombermanplus.BombermanType;
 import javafx.util.Duration;
 
-import static com.almasb.fxgl.dsl.FXGL.getb;
 import static com.almasb.fxgl.dsl.FXGL.geti;
 import static com.almasb.fxgl.dsl.FXGL.image;
 import static com.almasb.fxgl.dsl.FXGL.inc;
 import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
-import static com.bomberman.bombermanplus.constants.GameConst.*;
+import static com.bomberman.bombermanplus.Config.*;
 
 public class PlayerComponent extends Component {
 

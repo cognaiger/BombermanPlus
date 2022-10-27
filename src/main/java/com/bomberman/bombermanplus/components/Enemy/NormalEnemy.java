@@ -15,7 +15,7 @@ import javafx.util.Duration;
 
 import java.util.List;
 
-import static com.bomberman.bombermanplus.constants.GameConst.ENEMY_SPEED_BASE;
+import static com.bomberman.bombermanplus.Config.ENEMY_SPEED_BASE;
 
 public abstract class NormalEnemy extends Component {
     private double lastX = 0;

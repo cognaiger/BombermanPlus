@@ -22,7 +22,6 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.BlockComponent;
-import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.BombComponent;
 import com.bomberman.bombermanplus.components.FlameComponent;
 
@@ -33,7 +32,7 @@ import javafx.scene.shape.Rectangle;
 
 import static com.almasb.fxgl.dsl.FXGL.geto;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
-import static com.bomberman.bombermanplus.constants.GameConst.*;
+import static com.bomberman.bombermanplus.Config.*;
 
 public class BombermanFactory implements EntityFactory {
 

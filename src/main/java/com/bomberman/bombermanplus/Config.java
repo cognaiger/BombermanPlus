@@ -1,27 +1,35 @@
-package com.bomberman.bombermanplus.constants;
+package com.bomberman.bombermanplus;
 
 /**
  * Game configuration.
  */
-public class GameConst {
+public class Config {
+
+    /* Game configuration */
     public static final int SCREEN_WIDTH = 1080;
     public static final int SCREEN_HEIGHT = 720;
     public static final int GAME_WORLD_WIDTH = 1488;
     public static final int GAME_WORLD_HEIGHT = 720;
 
     public static final int TILE_SIZE = 48;
+    public static final String TITLE = "BOMBERMAN";
+    public static final String VERSION = "1.0";
+
+    /* UI configuration */
+    public static final String FONT = "Retro Gaming.ttf";
+
 
     /*
      * Attribute of player
      */
     public static final int SPEED = 120;
 
-    /*
-     * Game attributes.
-     */
-    public static final int TIME_PER_LEVEL = 100;
+    /* Game world attribute */
+    public static final int START_LEVEL = 0;
+    public static final int TIME_PER_LEVEL = 300;
     public static final int SCORE_ITEM = 20;
     public static final int MAX_LEVEL = 3;
+    public static final int NUM_OF_ENEMIES = 10;
 
     /*
      * Attributes of enemies.
