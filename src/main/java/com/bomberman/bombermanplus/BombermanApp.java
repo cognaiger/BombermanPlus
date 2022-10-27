@@ -314,7 +314,7 @@ public class BombermanApp extends GameApplication {
         AnchorPane pane =new AnchorPane();
         Shape shape = new Rectangle(1080, 720, Color.BLACK);
 
-        var text = FXGL.getUIFactoryService().newText("STAGE" + geti("level"), Color.WHITE, 40);
+        var text = FXGL.getUIFactoryService().newText("STAGE " + geti("level"), Color.WHITE, 40);
         text.setTranslateX((SCREEN_WIDTH >> 1) - 80);
         text.setTranslateY((SCREEN_HEIGHT >> 1) - 20);
         pane.getChildren().addAll(shape, text);
