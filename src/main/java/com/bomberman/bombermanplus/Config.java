@@ -18,11 +18,12 @@ public class Config {
     /* UI configuration */
     public static final String FONT = "Retro Gaming.ttf";
 
-
-    /*
-     * Attribute of player
-     */
+    /* Attribute of player */
+    public static final int START_POS_X = 48;
+    public static final int START_POS_Y = 144;
     public static final int SPEED = 120;
+    public static final double ANIM_TIME_PlAYER = 0.3;
+    public static final int SIZE_FRAME = 48;
 
     /* Game world attribute */
     public static final int START_LEVEL = 0;
@@ -30,9 +31,5 @@ public class Config {
     public static final int SCORE_ITEM = 20;
     public static final int MAX_LEVEL = 3;
     public static final int NUM_OF_ENEMIES = 10;
-
-    /*
-     * Attributes of enemies.
-     */
     public static final int ENEMY_SPEED_BASE = 70;
 }

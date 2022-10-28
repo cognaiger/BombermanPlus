@@ -24,7 +24,6 @@ import com.bomberman.bombermanplus.components.Enemy.*;
 import com.bomberman.bombermanplus.components.BlockComponent;
 import com.bomberman.bombermanplus.components.BombComponent;
 import com.bomberman.bombermanplus.components.FlameComponent;
-
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;

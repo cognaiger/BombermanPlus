@@ -23,70 +23,68 @@
 </data>
  </layer>
  <objectgroup id="4" name="items" visible="0">
-  <object id="55" type="portal" x="245" y="342" width="38" height="35"/>
-  <object id="57" type="speedItem" x="244" y="148" width="39" height="38"/>
-  <object id="58" type="bombsItem" x="244" y="483" width="39" height="39"/>
-  <object id="59" type="flamePassItem" x="51" y="628" width="40" height="40"/>
-  <object id="60" type="speedItem" x="580" y="337" width="38" height="40"/>
-  <object id="61" type="speedItem" x="820" y="435" width="40" height="39"/>
-  <object id="62" type="bombsItem" x="627" y="484" width="40" height="38"/>
-  <object id="63" type="bombsItem" x="820" y="244" width="40" height="38"/>
-  <object id="64" type="flameItem" x="868" y="578" width="42" height="42"/>
-  <object id="65" type="flameItem" x="435" y="579" width="41" height="38"/>
+  <object id="55" class="portal" x="245" y="342" width="38" height="35"/>
+  <object id="57" class="speedItem" x="244" y="148" width="39" height="38"/>
+  <object id="58" class="bombsItem" x="244" y="483" width="39" height="39"/>
+  <object id="59" class="flamePassItem" x="51" y="628" width="40" height="40"/>
+  <object id="60" class="speedItem" x="580" y="337" width="38" height="40"/>
+  <object id="61" class="speedItem" x="820" y="435" width="40" height="39"/>
+  <object id="62" class="bombsItem" x="627" y="484" width="40" height="38"/>
+  <object id="63" class="bombsItem" x="820" y="244" width="40" height="38"/>
+  <object id="64" class="flameItem" x="868" y="578" width="42" height="42"/>
+  <object id="65" class="flameItem" x="435" y="579" width="41" height="38"/>
  </objectgroup>
  <objectgroup id="2" name="obstacles">
-  <object id="2" type="around_wall" x="0" y="96" width="48" height="624"/>
-  <object id="3" type="around_wall" x="48" y="672" width="960" height="48"/>
-  <object id="4" type="around_wall" x="1008" y="96" width="48" height="624" rotation="0.0763988"/>
-  <object id="7" type="wall" x="101" y="192" width="42" height="45"/>
-  <object id="8" type="wall" x="101" y="288" width="42" height="45"/>
-  <object id="9" type="wall" x="196" y="288" width="42" height="45"/>
-  <object id="10" type="wall" x="197" y="192" width="42" height="45"/>
-  <object id="11" type="wall" x="100" y="576" width="42" height="45"/>
-  <object id="12" type="wall" x="100" y="480" width="42" height="45"/>
-  <object id="13" type="wall" x="196" y="480" width="42" height="45"/>
-  <object id="14" type="wall" x="196" y="384" width="42" height="45"/>
-  <object id="15" type="wall" x="196" y="576" width="42" height="45"/>
-  <object id="16" type="wall" x="292" y="192" width="42" height="45"/>
-  <object id="17" type="wall" x="292" y="288" width="42" height="45"/>
-  <object id="18" type="wall" x="292" y="480" width="42" height="45"/>
-  <object id="19" type="wall" x="388" y="288" width="42" height="45"/>
-  <object id="20" type="wall" x="388" y="480" width="42" height="45"/>
-  <object id="21" type="wall" x="388" y="576" width="42" height="45"/>
-  <object id="22" type="wall" x="484" y="480" width="42" height="45"/>
-  <object id="23" type="wall" x="484" y="576" width="42" height="45"/>
-  <object id="24" type="wall" x="580" y="480" width="42" height="45"/>
-  <object id="25" type="wall" x="580" y="577" width="42" height="45"/>
-  <object id="26" type="wall" x="916" y="576" width="42" height="45"/>
-  <object id="27" type="wall" x="772" y="384" width="42" height="45"/>
-  <object id="28" type="wall" x="676" y="384" width="42" height="45"/>
-  <object id="29" type="wall" x="772" y="192" width="42" height="45"/>
-  <object id="30" type="wall" x="676" y="192" width="42" height="45"/>
-  <object id="31" type="wall" x="772" y="288" width="42" height="45"/>
-  <object id="32" type="wall" x="676" y="288" width="42" height="45"/>
-  <object id="33" type="wall" x="484" y="288" width="42" height="45"/>
-  <object id="34" type="wall" x="580" y="288" width="42" height="45"/>
-  <object id="35" type="wall" x="436" y="384" width="42" height="45"/>
-  <object id="36" type="wall" x="532" y="384" width="42" height="45"/>
-  <object id="37" type="wall" x="676" y="480" width="42" height="45"/>
-  <object id="38" type="wall" x="772" y="480" width="42" height="45"/>
-  <object id="39" type="wall" x="293" y="575" width="42" height="95"/>
-  <object id="41" type="wall" x="48" y="384" width="95" height="46"/>
-  <object id="44" type="wall" x="293" y="384" width="90" height="46"/>
-  <object id="45" type="wall" x="869" y="385" width="90" height="45"/>
-  <object id="46" type="wall" x="869" y="287" width="90" height="47"/>
-  <object id="47" type="wall" x="774" y="576" width="41" height="94"/>
-  <object id="48" type="wall" x="869" y="480" width="90" height="47"/>
-  <object id="49" type="wall" x="870" y="191" width="89" height="48"/>
-  <object id="50" type="wall" x="580" y="193" width="42" height="45"/>
-  <object id="51" type="wall" x="484" y="193" width="42" height="45"/>
-  <object id="52" type="wall" x="388" y="144" width="42" height="94"/>
-  <object id="53" type="wall" x="676" y="577" width="42" height="45"/>
+  <object id="2" class="around_wall" x="0" y="96" width="48" height="624"/>
+  <object id="3" class="around_wall" x="48" y="672" width="960" height="48"/>
+  <object id="4" class="around_wall" x="1008" y="96" width="48" height="624" rotation="0.0763988"/>
+  <object id="7" class="wall" x="101" y="192" width="42" height="45"/>
+  <object id="8" class="wall" x="101" y="288" width="42" height="45"/>
+  <object id="9" class="wall" x="196" y="288" width="42" height="45"/>
+  <object id="10" class="wall" x="197" y="192" width="42" height="45"/>
+  <object id="11" class="wall" x="100" y="576" width="42" height="45"/>
+  <object id="12" class="wall" x="100" y="480" width="42" height="45"/>
+  <object id="13" class="wall" x="196" y="480" width="42" height="45"/>
+  <object id="14" class="wall" x="196" y="384" width="42" height="45"/>
+  <object id="15" class="wall" x="196" y="576" width="42" height="45"/>
+  <object id="16" class="wall" x="292" y="192" width="42" height="45"/>
+  <object id="17" class="wall" x="292" y="288" width="42" height="45"/>
+  <object id="18" class="wall" x="292" y="480" width="42" height="45"/>
+  <object id="19" class="wall" x="388" y="288" width="42" height="45"/>
+  <object id="20" class="wall" x="388" y="480" width="42" height="45"/>
+  <object id="21" class="wall" x="388" y="576" width="42" height="45"/>
+  <object id="22" class="wall" x="484" y="480" width="42" height="45"/>
+  <object id="23" class="wall" x="484" y="576" width="42" height="45"/>
+  <object id="24" class="wall" x="580" y="480" width="42" height="45"/>
+  <object id="25" class="wall" x="580" y="577" width="42" height="45"/>
+  <object id="26" class="wall" x="916" y="576" width="42" height="45"/>
+  <object id="27" class="wall" x="772" y="384" width="42" height="45"/>
+  <object id="28" class="wall" x="676" y="384" width="42" height="45"/>
+  <object id="29" class="wall" x="772" y="192" width="42" height="45"/>
+  <object id="30" class="wall" x="676" y="192" width="42" height="45"/>
+  <object id="31" class="wall" x="772" y="288" width="42" height="45"/>
+  <object id="32" class="wall" x="676" y="288" width="42" height="45"/>
+  <object id="33" class="wall" x="484" y="288" width="42" height="45"/>
+  <object id="34" class="wall" x="580" y="288" width="42" height="45"/>
+  <object id="35" class="wall" x="436" y="384" width="42" height="45"/>
+  <object id="36" class="wall" x="532" y="384" width="42" height="45"/>
+  <object id="37" class="wall" x="676" y="480" width="42" height="45"/>
+  <object id="38" class="wall" x="772" y="480" width="42" height="45"/>
+  <object id="39" class="wall" x="293" y="575" width="42" height="95"/>
+  <object id="41" class="wall" x="48" y="384" width="95" height="46"/>
+  <object id="44" class="wall" x="293" y="384" width="90" height="46"/>
+  <object id="45" class="wall" x="869" y="385" width="90" height="45"/>
+  <object id="46" class="wall" x="869" y="287" width="90" height="47"/>
+  <object id="47" class="wall" x="774" y="576" width="41" height="94"/>
+  <object id="48" class="wall" x="869" y="480" width="90" height="47"/>
+  <object id="49" class="wall" x="870" y="191" width="89" height="48"/>
+  <object id="50" class="wall" x="580" y="193" width="42" height="45"/>
+  <object id="51" class="wall" x="484" y="193" width="42" height="45"/>
+  <object id="52" class="wall" x="388" y="144" width="42" height="94"/>
+  <object id="53" class="wall" x="676" y="577" width="42" height="45"/>
  </objectgroup>
- <objectgroup id="3" name="player" visible="0">
-  <object id="54" type="player" x="48" y="145" width="48" height="46"/>
- </objectgroup>
+ <objectgroup id="3" name="player"/>
  <objectgroup id="5" name="Around_wall">
-  <object id="1" type="around_wall" x="48" y="96" width="960" height="48"/>
+  <object id="1" class="around_wall" x="48" y="96" width="960" height="48"/>
  </objectgroup>
 </map>

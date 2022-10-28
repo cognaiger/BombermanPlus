@@ -15,11 +15,12 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.pathfinding.CellState;
 import com.almasb.fxgl.pathfinding.astar.AStarGrid;
+import com.almasb.fxgl.physics.PhysicsComponent;
 import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
 import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import com.bomberman.bombermanplus.components.PlayerComponent;
 import com.bomberman.bombermanplus.ui.BombermanHUD;
-import javafx.event.ActionEvent;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -41,6 +42,7 @@ import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGL.showMessage;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.bomberman.bombermanplus.BombermanType.*;
+import static com.bomberman.bombermanplus.Config.*;
 
 public class BombermanApp extends GameApplication {
 
@@ -61,17 +63,17 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setHeight(Config.SCREEN_HEIGHT);
-        settings.setWidth(Config.SCREEN_WIDTH);
-        settings.setTitle(Config.TITLE);
-        settings.setVersion(Config.VERSION);
+        settings.setHeight(SCREEN_HEIGHT);
+        settings.setWidth(SCREEN_WIDTH);
+        settings.setTitle(TITLE);
+        settings.setVersion(VERSION);
         settings.setIntroEnabled(false);
         settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(true);
         settings.setPreserveResizeRatio(true);
         settings.setManualResizeEnabled(true);
         settings.setDeveloperMenuEnabled(true);
-        settings.setFontUI(Config.FONT);
+        settings.setFontUI(FONT);
         settings.setSceneFactory(new SceneFactory() {
             @NotNull
             @Override
@@ -198,15 +200,15 @@ public class BombermanApp extends GameApplication {
      */
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("level", Config.START_LEVEL);
-        vars.put("speed", Config.SPEED);
-        vars.put("numOfEnemy", Config.NUM_OF_ENEMIES);
+        vars.put("level", START_LEVEL);
+        vars.put("speed", SPEED);
+        vars.put("numOfEnemy", NUM_OF_ENEMIES);
         vars.put("flame", 1);
         vars.put("bomb", 1);
         vars.put("score", 0);
         vars.put("immortality", false);
         vars.put("life", 3);
-        vars.put("time", Config.TIME_PER_LEVEL);
+        vars.put("time", TIME_PER_LEVEL);
     }
 
     /**
@@ -249,7 +251,7 @@ public class BombermanApp extends GameApplication {
     }
 
     private void loadNextLevel() {
-        if (FXGL.geti("level") >= Config.MAX_LEVEL) {
+        if (FXGL.geti("level") >= MAX_LEVEL) {
             showMessage("You win!", () -> getGameController().gotoMainMenu());
         } else {
             getSettings().setGlobalMusicVolume(0);
@@ -272,7 +274,7 @@ public class BombermanApp extends GameApplication {
 
     private void setGridForAi() {
         AStarGrid grid = AStarGrid.fromWorld(getGameWorld(), 31, 15,
-                Config.TILE_SIZE, Config.TILE_SIZE, (type) -> {
+                TILE_SIZE, TILE_SIZE, (type) -> {
                     if (type == BombermanType.BRICK
                             || type == BombermanType.WALL
                             || type == BombermanType.GRASS
@@ -285,7 +287,7 @@ public class BombermanApp extends GameApplication {
                 });
 
         AStarGrid _grid = AStarGrid.fromWorld(getGameWorld(), 31, 15,
-                Config.TILE_SIZE, Config.TILE_SIZE, (type) -> {
+                TILE_SIZE, TILE_SIZE, (type) -> {
                     if (type == BombermanType.AROUND_WALL || type == BombermanType.WALL) {
                         return CellState.NOT_WALKABLE;
                     } else {
@@ -302,8 +304,8 @@ public class BombermanApp extends GameApplication {
         Shape shape = new Rectangle(1080, 720, Color.BLACK);
 
         var text = FXGL.getUIFactoryService().newText("STAGE" + geti("level"), Color.WHITE, 40);
-        text.setTranslateX((Config.SCREEN_WIDTH >> 1) - 80);
-        text.setTranslateY((Config.SCREEN_HEIGHT >> 1) - 20);
+        text.setTranslateX((SCREEN_WIDTH >> 1) - 80);
+        text.setTranslateY((SCREEN_HEIGHT >> 1) - 20);
         pane.getChildren().addAll(shape, text);
 
         return pane;
@@ -334,7 +336,7 @@ public class BombermanApp extends GameApplication {
         FXGL.setLevelFromMap("bbm_level" + geti("level") + ".tmx");
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(0, 0, Config.GAME_WORLD_WIDTH, Config.GAME_WORLD_HEIGHT);
+        viewport.setBounds(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT);
         viewport.bindToEntity(
                 getPlayer(),
                 FXGL.getAppWidth() / 2.0f,
@@ -342,10 +344,11 @@ public class BombermanApp extends GameApplication {
         viewport.setLazy(true);
 
         /* reset level state */
-        set("time", Config.TIME_PER_LEVEL);
+        set("time", TIME_PER_LEVEL);
         set("bomb", 1);
         set("flame", 1);
-        set("numOfEnemy", Config.NUM_OF_ENEMIES);
+        set("numOfEnemy", NUM_OF_ENEMIES);
+        set("score", 0);
         setGridForAi();
     }
 
@@ -354,12 +357,27 @@ public class BombermanApp extends GameApplication {
      */
     private void onPlayerKilled() {
         if (!getb("immortality")) {
-            set("immortality", true);
-            if (geti("life") > 0) inc("life", -1);
-            set("score", 0);
-            getPlayer().getComponent(PlayerComponent.class).setExploreCancel(true);
-            requestNewGame = true;
+            if (geti("life") > 0) {
+                inc("life", -1);
+                revive();
+            } else {
+                set("immortality", true);
+                getPlayer().getComponent(PlayerComponent.class).setExploreCancel(true);
+                requestNewGame = true;
+            }
         }
+    }
+
+    /**
+     * Revive and return to start position.
+     */
+    private void revive() {
+        getPlayer().getComponent(PlayerComponent.class).die();
+        FXGL.getGameTimer().runOnceAfter(() -> {
+            getPlayer().getComponent(PlayerComponent.class).stop();
+            getPlayer().getComponent(PhysicsComponent.class)
+                    .overwritePosition(new Point2D(START_POS_X, START_POS_Y));
+        }, Duration.seconds(0.5));
     }
 }
 
