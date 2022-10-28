@@ -1,5 +1,7 @@
 # Game Bomberman
 OOP project
+### Achievement
+When we achieve game target, there will be notification.
 ### Sounds
 1. Background music
 2. Start stage sound
