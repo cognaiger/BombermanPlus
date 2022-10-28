@@ -6,5 +6,5 @@ OOP project
 3. Level transition sound
 4. Place bombs
 5. Bombs explode
-6. Absorb items
-7. Walk
+6. Collect items
+7. Player and enemies die
