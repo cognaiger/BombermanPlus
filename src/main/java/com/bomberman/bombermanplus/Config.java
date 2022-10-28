@@ -22,6 +22,7 @@ public class Config {
     public static final int START_POS_X = 48;
     public static final int START_POS_Y = 144;
     public static final int SPEED = 120;
+    public static final int LIFE_PER_LEVEL = 3;
     public static final double ANIM_TIME_PlAYER = 0.3;
     public static final int SIZE_FRAME = 48;
 

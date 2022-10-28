@@ -4,6 +4,8 @@
 
 package com.bomberman.bombermanplus;
 
+import com.almasb.fxgl.achievement.Achievement;
+import com.almasb.fxgl.achievement.AchievementEvent;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
@@ -19,6 +21,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.bomberman.bombermanplus.Menus.BombermanGameMenu;
 import com.bomberman.bombermanplus.Menus.BombermanMenu;
 import com.bomberman.bombermanplus.components.PlayerComponent;
+import com.bomberman.bombermanplus.components.PlayerStatus;
 import com.bomberman.bombermanplus.ui.BombermanHUD;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
@@ -87,6 +90,14 @@ public class BombermanApp extends GameApplication {
                 return new BombermanGameMenu();
             }
         });
+
+        /* Register achievements */
+        settings.getAchievements().add(new Achievement("Slayer", "Kill 5 enemies",
+                "numOfKill", 5));
+        settings.getAchievements().add(new Achievement("See the world", "Pass level 1",
+                "level", 2));
+        settings.getAchievements().add(new Achievement("Score owner", "Earn more than 1000 score",
+                "score", 1000));
     }
 
     /**
@@ -203,11 +214,12 @@ public class BombermanApp extends GameApplication {
         vars.put("level", START_LEVEL);
         vars.put("speed", SPEED);
         vars.put("numOfEnemy", NUM_OF_ENEMIES);
+        vars.put("numOfKill", 0);
         vars.put("flame", 1);
         vars.put("bomb", 1);
         vars.put("score", 0);
         vars.put("immortality", false);
-        vars.put("life", 3);
+        vars.put("life", LIFE_PER_LEVEL);
         vars.put("time", TIME_PER_LEVEL);
     }
 
@@ -314,6 +326,12 @@ public class BombermanApp extends GameApplication {
     @Override
     protected void onUpdate(double tpf) {
 
+        /* Achievement handler */
+        FXGL.getEventBus().addEventHandler(AchievementEvent.ACHIEVED, e -> {
+            String message = "Achievement unlocked";
+            FXGL.getNotificationService().pushNotification(message);
+        });
+
         if (geti("time") == 0) {
             showMessage("Game Over leu leu!!!", () -> getGameController().gotoMainMenu());
         }
@@ -349,6 +367,7 @@ public class BombermanApp extends GameApplication {
         set("flame", 1);
         set("numOfEnemy", NUM_OF_ENEMIES);
         set("score", 0);
+        set("life", LIFE_PER_LEVEL);
         setGridForAi();
     }
 
@@ -356,7 +375,10 @@ public class BombermanApp extends GameApplication {
      * Kill player.
      */
     private void onPlayerKilled() {
-        if (!getb("immortality")) {
+        if (getb("immortality")) {
+            return;
+        } else {
+            play("bomberman_die.wav");
             if (geti("life") > 0) {
                 inc("life", -1);
                 revive();
@@ -369,15 +391,17 @@ public class BombermanApp extends GameApplication {
     }
 
     /**
-     * Revive and return to start position.
+     * Revive and return to start position, immortality for 2s.
      */
     private void revive() {
         getPlayer().getComponent(PlayerComponent.class).die();
         FXGL.getGameTimer().runOnceAfter(() -> {
-            getPlayer().getComponent(PlayerComponent.class).stop();
+            getPlayer().getComponent(PlayerComponent.class).setCurMove(PlayerStatus.STOP);
             getPlayer().getComponent(PhysicsComponent.class)
                     .overwritePosition(new Point2D(START_POS_X, START_POS_Y));
+            set("immortality", true);
         }, Duration.seconds(0.5));
+        FXGL.getGameTimer().runOnceAfter(() -> set("immortality", false), Duration.seconds(2));
     }
 }
 

@@ -92,6 +92,10 @@ public class PlayerComponent extends Component {
         texture = new AnimatedTexture(aniIdleDown);
     }
 
+    public void setCurMove(PlayerStatus curMove) {
+        this.curMove = curMove;
+    }
+
     public boolean isExploreCancel() {
         return exploreCancel;
     }
@@ -280,7 +284,9 @@ public class PlayerComponent extends Component {
      * Change status to STOP.
      */
     public void stop() {
-        curMove = PlayerStatus.STOP;
+        if (curMove != PlayerStatus.DIE) {
+            curMove = PlayerStatus.STOP;
+        }
     }
 
     /**

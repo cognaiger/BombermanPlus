@@ -57,7 +57,7 @@ public class BombermanFactory implements EntityFactory {
         return entityBuilder(data)
                 .atAnchored(new Point2D(radius, radius), new Point2D(radius, radius))     /* */
                 .type(BombermanType.PLAYER)
-                .bbox(new HitBox(BoundingShape.circle(radius)))
+                .bbox(new HitBox(BoundingShape.circle(radius - 2)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new PlayerComponent())
