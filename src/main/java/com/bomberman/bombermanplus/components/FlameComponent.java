@@ -51,6 +51,8 @@ public class FlameComponent extends Component {
         setCollisionBreak(BombermanType.CORAL, "coral_break");
 
         onCollisionBegin(BombermanType.FLAME, BombermanType.BALLOOM_E, (f, b) -> {
+            inc("numOfKill", 1);
+            play("enemy_die.wav");
             double x = b.getX();
             double y = b.getY();
             b.getComponent(BalloomComponent.class).enemyDie();
@@ -63,6 +65,8 @@ public class FlameComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.FLAME, BombermanType.ONEAL_E, (f, o) -> {
+            inc("numOfKill", 1);
+            play("enemy_die.wav");
             double x = o.getX();
             double y = o.getY();
             o.getComponent(OnealComponent.class).enemyDie();
@@ -75,6 +79,8 @@ public class FlameComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.FLAME, BombermanType.DORIA_E, (f, d) -> {
+            inc("numOfKill", 1);
+            play("enemy_die.wav");
             double x = d.getX();
             double y = d.getY();
             d.getComponent(DoriaComponent.class).enemyDie();
@@ -87,6 +93,8 @@ public class FlameComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.FLAME, BombermanType.DAHL_E, (f, d) -> {
+            inc("numOfKill", 1);
+            play("enemy_die.wav");
             double x = d.getX();
             double y = d.getY();
             d.getComponent(DahlComponent.class).enemyDie();
@@ -99,6 +107,8 @@ public class FlameComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.FLAME, BombermanType.OVAPE_E, (f, o) -> {
+            inc("numOfKill", 1);
+            play("enemy_die.wav");
             double x = o.getX();
             double y = o.getY();
             o.getComponent(OvapeComponent.class).enemyDie();
@@ -112,6 +122,8 @@ public class FlameComponent extends Component {
         });
 
         onCollisionBegin(BombermanType.FLAME, BombermanType.PASS_E, (f, pa) -> {
+            inc("numOfKill", 1);
+            play("enemy_die.wav");
             double x = pa.getX();
             double y = pa.getY();
             pa.getComponent(PassComponent.class).enemyDie();

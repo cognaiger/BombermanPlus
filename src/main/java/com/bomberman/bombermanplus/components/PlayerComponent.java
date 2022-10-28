@@ -21,16 +21,6 @@ import static com.bomberman.bombermanplus.Config.*;
 
 public class PlayerComponent extends Component {
 
-    public enum PlayerStatus {
-        UP, RIGHT, DOWN, LEFT, STOP, DIE
-    }
-
-    public enum Skin {
-        NORMAL, FLAME_PASS
-    }
-
-    private static final double ANIM_TIME_PlAYER = 0.3;
-    private static final int SIZE_FRAME = 48;
     private int bombsPlaced = 0;
     private boolean exploreCancel = false;
     private double lastX = 0;
@@ -102,6 +92,10 @@ public class PlayerComponent extends Component {
         texture = new AnimatedTexture(aniIdleDown);
     }
 
+    public void setCurMove(PlayerStatus curMove) {
+        this.curMove = curMove;
+    }
+
     public boolean isExploreCancel() {
         return exploreCancel;
     }
@@ -120,40 +114,56 @@ public class PlayerComponent extends Component {
 
         if (skin == Skin.NORMAL) {
             aniIdleDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 3, 3);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    3, 3);
             aniIdleRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 6, 6);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    6, 6);
             aniIdleLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 9, 9);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    9, 9);
             aniIdleUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 0, 0);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    0, 0);
 
             aniWalkDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 3, 5);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    3, 5);
             aniWalkRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 6, 8);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    6, 8);
             aniWalkLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 9, 11);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    9, 11);
             aniWalkUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 0, 2);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    0, 2);
         } else {
             aniIdleDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 115, 115);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    115, 115);
             aniIdleRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 118, 118);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    118, 118);
             aniIdleLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 121, 121);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    121, 121);
             aniIdleUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 112, 112);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    112, 112);
 
             aniWalkDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 115, 117);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    115, 117);
             aniWalkRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 118, 120);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    118, 120);
             aniWalkLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 121, 123);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    121, 123);
             aniWalkUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER), 112, 114);
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    112, 114);
         }
     }
 
@@ -179,6 +189,9 @@ public class PlayerComponent extends Component {
             }
         }
 
+        /*
+         * Based on status to render animation.
+         */
         switch (curMove) {
             case UP:
                 texture.loopNoOverride(aniWalkUp);
@@ -201,13 +214,14 @@ public class PlayerComponent extends Component {
                     texture.loopNoOverride(aniIdleLeft);
                 } else if (texture.getAnimationChannel() == aniWalkRight) {
                     texture.loopNoOverride(aniIdleRight);
+                } else if (texture.getAnimationChannel() == aniDie) {
+                    texture.loopNoOverride(aniIdleDown);
                 }
                 break;
             case DIE:
                 texture.loopNoOverride(aniDie);
                 break;
         }
-
 
         timeWalk += tbf;
         double dx = entity.getX() - lastX;
