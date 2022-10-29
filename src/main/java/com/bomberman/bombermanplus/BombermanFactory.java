@@ -20,11 +20,8 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import com.bomberman.bombermanplus.components.*;
 import com.bomberman.bombermanplus.components.Enemy.*;
-import com.bomberman.bombermanplus.components.BlockComponent;
-import com.bomberman.bombermanplus.components.BombComponent;
-import com.bomberman.bombermanplus.components.FlameComponent;
-import com.bomberman.bombermanplus.components.PlayerComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -61,6 +58,7 @@ public class BombermanFactory implements EntityFactory {
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new PlayerComponent())
+                .with(new PlayerImgComponent())
                 .with(new CellMoveComponent(TILE_SIZE, TILE_SIZE, ENEMY_SPEED_BASE))          /* AI */
                 .with(new AStarMoveComponent(new LazyValue<>(() -> geto("grid"))))    /* AI */
                 .zIndex(5)
