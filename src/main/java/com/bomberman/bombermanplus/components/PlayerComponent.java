@@ -7,13 +7,10 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.PhysicsWorld;
-import com.almasb.fxgl.texture.AnimatedTexture;
-import com.almasb.fxgl.texture.AnimationChannel;
 import com.bomberman.bombermanplus.BombermanType;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.geti;
-import static com.almasb.fxgl.dsl.FXGL.image;
 import static com.almasb.fxgl.dsl.FXGL.inc;
 import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
@@ -30,11 +27,6 @@ public class PlayerComponent extends Component {
     private PlayerStatus curMove = PlayerStatus.STOP;
     private PhysicsComponent physics;
     private int speed = FXGL.geti("speed");
-
-    private AnimatedTexture texture;
-    private AnimationChannel aniIdleDown, aniIdleRight, aniIdleUp, aniIdleLeft;
-    private AnimationChannel aniWalkDown, aniWalkRight, aniWalkUp, aniWalkLeft;
-    private AnimationChannel aniDie;
 
     /**
      * Constructor.
@@ -53,7 +45,6 @@ public class PlayerComponent extends Component {
             getGameTimer().runOnceAfter(() -> {
                     inc("speed", -SPEED / 3);
                     speed = geti("speed");
-                    setAnimation(Skin.NORMAL);
             }, Duration.seconds(8));
             return null;
         });
@@ -80,16 +71,17 @@ public class PlayerComponent extends Component {
             set("immortality", true);
             flame_pass_i.removeFromWorld();
             inc("score", SCORE_ITEM);
-            setAnimation(Skin.FLAME_PASS);
+            getEntity().getComponent(PlayerImgComponent.class).setAnimation(Skin.FLAME_PASS);
             getGameTimer().runOnceAfter(() -> {
-                setAnimation(Skin.NORMAL);
+                getEntity().getComponent(PlayerImgComponent.class).setAnimation(Skin.NORMAL);
                 set("immortality", false);
             }, Duration.seconds(8));
             return null;
         });
+    }
 
-        setAnimation(Skin.NORMAL);
-        texture = new AnimatedTexture(aniIdleDown);
+    public PlayerStatus getCurMove() {
+        return curMove;
     }
 
     public void setCurMove(PlayerStatus curMove) {
@@ -102,74 +94,6 @@ public class PlayerComponent extends Component {
 
     public void setExploreCancel(boolean exploreCancel) {
         this.exploreCancel = exploreCancel;
-    }
-
-    /**
-     * Set animation channel based on current skin.
-     * @param skin current skin
-     */
-    public void setAnimation(Skin skin) {
-        aniDie = new AnimationChannel(image("sprites.png"), 16,
-                SIZE_FRAME, SIZE_FRAME, Duration.seconds(1.5), 12, 14);
-
-        if (skin == Skin.NORMAL) {
-            aniIdleDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    3, 3);
-            aniIdleRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    6, 6);
-            aniIdleLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    9, 9);
-            aniIdleUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    0, 0);
-
-            aniWalkDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    3, 5);
-            aniWalkRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    6, 8);
-            aniWalkLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    9, 11);
-            aniWalkUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    0, 2);
-        } else {
-            aniIdleDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    115, 115);
-            aniIdleRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    118, 118);
-            aniIdleLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    121, 121);
-            aniIdleUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    112, 112);
-
-            aniWalkDown = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    115, 117);
-            aniWalkRight = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    118, 120);
-            aniWalkLeft = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    121, 123);
-            aniWalkUp = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
-                    112, 114);
-        }
-    }
-
-    @Override
-    public void onAdded() {
-        entity.getViewComponent().addChild(texture);
     }
 
     @Override
@@ -189,40 +113,7 @@ public class PlayerComponent extends Component {
             }
         }
 
-        /*
-         * Based on status to render animation.
-         */
-        switch (curMove) {
-            case UP:
-                texture.loopNoOverride(aniWalkUp);
-                break;
-            case DOWN:
-                texture.loopNoOverride(aniWalkDown);
-                break;
-            case LEFT:
-                texture.loopNoOverride(aniWalkLeft);
-                break;
-            case RIGHT:
-                texture.loopNoOverride(aniWalkRight);
-                break;
-            case STOP:
-                if (texture.getAnimationChannel() == aniWalkDown) {
-                    texture.loopNoOverride(aniIdleDown);
-                } else if (texture.getAnimationChannel() == aniWalkUp) {
-                    texture.loopNoOverride(aniIdleUp);
-                } else if (texture.getAnimationChannel() == aniWalkLeft) {
-                    texture.loopNoOverride(aniIdleLeft);
-                } else if (texture.getAnimationChannel() == aniWalkRight) {
-                    texture.loopNoOverride(aniIdleRight);
-                } else if (texture.getAnimationChannel() == aniDie) {
-                    texture.loopNoOverride(aniIdleDown);
-                }
-                break;
-            case DIE:
-                texture.loopNoOverride(aniDie);
-                break;
-        }
-
+        /* Handle sound when walking */
         timeWalk += tbf;
         double dx = entity.getX() - lastX;
         double dy = entity.getY() - lastY;
