@@ -15,14 +15,19 @@ import static com.bomberman.bombermanplus.Config.SIZE_FRAME;
 
 public class PlayerImgComponent  extends Component {
 
+    private Skin defaultSkin = Skin.CHAR2;
     private AnimatedTexture texture;
     private AnimationChannel aniIdleDown, aniIdleRight, aniIdleUp, aniIdleLeft;
     private AnimationChannel aniWalkDown, aniWalkRight, aniWalkUp, aniWalkLeft;
     private AnimationChannel aniDie;
 
     public PlayerImgComponent() {
-        setAnimation(Skin.CHAR2);
+        setAnimation(defaultSkin);
         texture = new AnimatedTexture(aniIdleDown);
+    }
+
+    public Skin getDefaultSkin() {
+        return defaultSkin;
     }
 
     /**
@@ -85,8 +90,6 @@ public class PlayerImgComponent  extends Component {
             aniWalkUp = new AnimationChannel(image("sprites.png"), 16,
                     SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
                     112, 114);
-            aniDie = new AnimationChannel(image("sprites.png"), 16,
-                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(1.5), 12, 14);
         } else if (skin == Skin.CHAR2) {
             aniIdleDown = new AnimationChannel(image("char2.png"), 8,
                     SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
@@ -115,6 +118,26 @@ public class PlayerImgComponent  extends Component {
                     16, 18);
             aniDie = new AnimationChannel(image("char2.png"), 8,
                     SIZE_FRAME, SIZE_FRAME, Duration.seconds(0.5), 24, 31);
+        } else if (skin == Skin.CHAR2IMMO) {
+            aniIdleDown = new AnimationChannel(image("char2.png"), 8,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    14, 14);
+            aniIdleRight = new AnimationChannel(image("char2.png"), 8,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    6, 6);
+            aniIdleUp = new AnimationChannel(image("char2.png"), 8,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    22, 22);
+
+            aniWalkDown = new AnimationChannel(image("char2.png"), 8,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    14, 15);
+            aniWalkRight = new AnimationChannel(image("char2.png"), 8,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    6, 7);
+            aniWalkUp = new AnimationChannel(image("char2.png"), 8,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    22, 23);
         }
     }
 
