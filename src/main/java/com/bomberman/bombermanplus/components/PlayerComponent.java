@@ -71,9 +71,15 @@ public class PlayerComponent extends Component {
             set("immortality", true);
             flame_pass_i.removeFromWorld();
             inc("score", SCORE_ITEM);
-            getEntity().getComponent(PlayerImgComponent.class).setAnimation(Skin.FLAME_PASS);
+
+            /* change skin */
+            Skin curSkin = getEntity().getComponent(PlayerImgComponent.class).getDefaultSkin();
+            int skinNum = curSkin.ordinal();
+            skinNum++;
+            getEntity().getComponent(PlayerImgComponent.class).setAnimation(Skin.fromInteger(skinNum));
             getGameTimer().runOnceAfter(() -> {
-                getEntity().getComponent(PlayerImgComponent.class).setAnimation(Skin.NORMAL);
+                getEntity().getComponent(PlayerImgComponent.class)
+                        .setAnimation(getEntity().getComponent(PlayerImgComponent.class).getDefaultSkin());
                 set("immortality", false);
             }, Duration.seconds(8));
             return null;

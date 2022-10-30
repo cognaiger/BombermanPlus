@@ -400,7 +400,7 @@ public class BombermanApp extends GameApplication {
             getPlayer().getComponent(PhysicsComponent.class)
                     .overwritePosition(new Point2D(START_POS_X, START_POS_Y));
             set("immortality", true);
-        }, Duration.seconds(0.5));
+        }, Duration.seconds(1));
         FXGL.getGameTimer().runOnceAfter(() -> set("immortality", false), Duration.seconds(2));
     }
 }
