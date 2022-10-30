@@ -1,27 +1,16 @@
-<div id="top" align="center">
-<img src="screenshots/Banner_For_Readme.png" alt="Banner">
-</div>
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/Nhathuy1305/OOP_BOMBERMAN_GAME.git">
-    <img src="res/images/ttsalpha4.0@0.5x.png" alt="Logo" width="200" height="200">
+    <img src="src/main/resources/logo.png" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">OOP BOMBERMAN PROJECT</h3>
-  <h4 align="center">Team Name: 404 NOT FOUND</h4>
-
-  <p align="center">
-    A Java game created with JavaFX for OOP course in International University - VNUHCM!
-    <br />
-    <br />
-    <a href="https://youtu.be/iLo5E-07aY0">View Demo</a>
-  </p>
+  <h4 align="center">Team Name: Berserk</h4>
 </div>
 
 <!-- TABLE OF CONTENTS -->
-# Table of contents :round_pushpin:
+# Table of contents 
 1. [Introduction](#Introduction)
 2. [Game](#Game)
 3. [UML-class-diagram](#UML-class-diagram)
@@ -64,42 +53,16 @@ This is our game project for our Object-Oriented Programming course. Bomberman i
 
 ### Team Members :couplekiss_man_man:
 
-| Order |         Name          |     ID      |            Email            |                       Github account                        |                              Facebook                              |
-| :---: | :-------------------: | :---------: | :-------------------------: | :---------------------------------------------------------: | :----------------------------------------------------------------: |
-|   1   |     Pham Gia Bao      | ITITIU20166 | Phamgiabao1862001@gmail.com |           [giabao18](https://github.com/giabao18)           | [Gia Bảo](https://www.facebook.com/profile.php?id=100007374601572) |
-|   2   | Phan Nguyen Hoang Bao | ITITIU20165 | hoangbao15082002@gmail.com  | [Mr@JEY](https://github.com/PhanNguyenHoangBao-ITITIU20165) |         [Hoàng Bảo](https://www.facebook.com/kuma.jeyruei)         |
-
-### Installation :dart: 
-
-1. Open the terminal on your IDE
-2. Clone the repo
-   ```sh
-   git clone https://github.com/Nhathuy1305/OOP_BOMBERMAN_GAME
-   ```
-3. Check the file status
-   ```sh
-   git status
-   ```
-4. Change branch
-   ```js
-   git checkout 'branch_name'
-   ```
+| Order |      Name       |     MSV     |           Email            |                       Github account                        |
+| :---: |:---------------:|:-----------:|:--------------------------:|:-----------------------------------------------------------:|
+|   1   | Truong Gia Ngoc |  21020369   |  ngoctruonggia@gmail.com   |          [cognaiger](https://github.com/cognaiger)           |
+|   2   | Pham Gia Phong  | ITITIU20165 | hoangbao15082002@gmail.com | [Mr@JEY](https://github.com/PhanNguyenHoangBao-ITITIU20165) |
 
 ### Motivation :mechanical_arm:
 
 <div style="text-align:justify">
 As a fresher developer, we assume that the Bomberman game is one of the most simple game which helps us in practicing coding with OOP also some significant aspects of the front-end such as: How to render the game? , How frame working in UX/UI? , ….
 </div>
-
-### Task Allocation :ok_man:
-
-| Order | Task                                    |  Person   | Contribution |
-| :---- | :-------------------------------------- | :-------: | :----------: |
-| 1     | Level, Utility, Readme                  |  Gia Bao  |      25      |
-| 2     | Control, Ui                             | Hoang Bao |      25      |
-| 3     | Entities, PowerPoint                    | Cong Bang |      25      |
-| 4     | Graphics, PowerPoint, Github Management | Nhat Huy  |      25      |
-
 
 <!-- Game -->
 <br />
@@ -108,29 +71,25 @@ As a fresher developer, we assume that the Bomberman game is one of the most sim
 ### Technologies :globe_with_meridians:
 
 - Language: [JAVA](https://www.java.com/en/)
-- Framework: [IntelliJ](https://www.jetbrains.com/idea/), [Visual Studio Code](https://code.visualstudio.com)
-- Intelligent: [A\* algorithms](https://www.geeksforgeeks.org/a-search-algorithm/)
-- Library: [JavaFx](https://openjfx.io)
+- Framework: [IntelliJ](https://www.jetbrains.com/idea/)
+- Library: [FXGL](https://github.com/AlmasB/FXGL)
 
 
 ### How to play ? :video_game:
 <div style="text-align:justify">
 
-Players will direct the character's movement in order to place bombs to killing the enemy. After the player has killed all of the monsters of this level a portal will open for the character to enter in order to advance to the next level (we have 3 levels).
+Players will direct the character's movement in order to place bombs to killing the enemy. After the player has killed all enemies of this level a portal will open for the character to enter in order to advance to the next level (we have 3 levels).
 </div>
 
 ### Game logic :bulb:
 
-- Character: The character is controlled by the arrow key combination, only one bomb can be placed at a time.Moreover ,The character will gain speed change if the value is SpeedItem.
+- Character: The character is controlled by button WASD, press SPACE to place bomb. Moreover ,The character will increase strength if he absorbs item.
 <div align="center">
 <img src="screenshots/Character.gif" alt="">
 </div>
-
-
 <br />
 
-
-- Bomb : When the bomb explodes, it will create a fire trail, if the character or the enemy hits the fire trail, they will all be destroyed. The length of the flame will increase if the character eats flameitem
+- Bomb : When the bomb explodes, it will create a fire flames, if the character or the enemy hits the fire flames, they will all be destroyed. The length of the flame will increase if the character eats flameitem
 <div align="center">
 <img src="screenshots/Bomb.gif" alt="">
 </div>
@@ -138,7 +97,7 @@ Players will direct the character's movement in order to place bombs to killing 
 
 <br />
 
-- Enemy: includes 4 types and is divided by level, each type has its own attribute.
+- Enemy: includes 6 types and is divided by level, each type has its own appearance and attribute.
 <div align="center">
 <img src="screenshots/Ballom.gif" alt="">
 <img src="screenshots/Oneal.gif" alt="">
@@ -224,37 +183,22 @@ Players will direct the character's movement in order to place bombs to killing 
 
 <!-- FEATURES -->
 ## Features<a name="Features"> :triangular_flag_on_post:
-- Completed: UX/UI, sound of game, enhancing algorithms
-- Incompleted: Minvo, 2 players, multiple characters for choosing, …
+- Completed: Basic logic, UX/UI, sound of game
+- Incompleted: 2 players, multiplayer through Internet, AI for auto playing…
 <br />
 
 <!-- CHALLENGES -->
 ## Challenges<a name="Challenges">:bangbang:
 
 - Task allocation for each team member
-- Using platform for communication ([Trello](https://trello.com/b/Ac0ISkzt/bomber-game-oop-project-2022))
+- Communication
 - Working environment (Github)
-<br />
-	
-## Acknowledgments<a name="Acknowledgments">:brain:
-<div style="text-align:justify">
-We would want to express our gratitude to Tom for providing us with the chance to
-participate in this project and apply what we learned in theory into practice. This project's
-learning curve was steep, but it was well worth it for all of us. We have learned more about interface technologies to construct a functioning application
-that interacts with our project. Tom, we want to thank you again for all the hard work and expertise that you have
-put into your teaching. We'll make sure that all we've learned doesn't go to waste, and that
-we can master them better from now on :heart:
-</div>
-
 <br />
 
 
 ## References<a name="References">  :eye::tongue::eye:
-1. [phuctd99](https://github.com/phuctd99/bom)
-2. [carlosflorencio](https://github.com/carlosflorencio/bomberman/blob/master/.project)
-3. [minhnq410](https://github.com/minhnq410/Bomberman_Assignment_2/tree/master/src/uet/oop/bomberman)
-4. [JavaFx Tutorial](https://openjfx.io/openjfx-docs/)
-5. [A* Intelligent](https://www.simplilearn.com/tutorials/artificial-intelligence-tutorial/a-star-algorithm#:~:text=PythonExplore%20Course-,What%20is%20an%20A*%20Algorithm%3F,shortest%20path%20to%20be%20taken.)
+1. [FXGL tutorials](https://webtechie.be/post/2020-05-07-getting-started-with-fxgl/)
+2. [FXGL documents](https://almasb.github.io/FXGL/)
 
 <br />
 
@@ -272,15 +216,3 @@ we can master them better from now on :heart:
 [issues-shield]: https://img.shields.io/github/issues/Nhathuy1305/OOP_BOMBERMAN_GAME.svg?style=for-the-badge
 [issues-url]: https://github.com//Nhathuy1305/OOP_BOMBERMAN_GAME/issues
 
-# Game Bomberman
-OOP project
-### Achievement
-When we achieve game target, there will be notification.
-### Sounds
-1. Background music
-2. Start stage sound
-3. Level transition sound
-4. Place bombs
-5. Bombs explode
-6. Collect items
-7. Player and enemies die
