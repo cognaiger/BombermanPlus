@@ -12,8 +12,8 @@ public class Config {
     public static final int GAME_WORLD_HEIGHT = 720;
 
     public static final int TILE_SIZE = 48;
-    public static final String TITLE = "BOMBERMAN";
-    public static final String VERSION = "1.0";
+    public static final String TITLE = "";
+    public static final String VERSION = "";
 
     /* UI configuration */
     public static final String FONT = "Retro Gaming.ttf";
