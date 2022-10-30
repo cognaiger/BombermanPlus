@@ -32,6 +32,7 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.getGameScene;
@@ -81,7 +82,11 @@ public class BombermanApp extends GameApplication {
             @NotNull
             @Override
             public FXGLMenu newMainMenu() {
-                return new BombermanMenu();
+                try {
+                    return new BombermanMenu();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             @NotNull
@@ -315,7 +320,7 @@ public class BombermanApp extends GameApplication {
         AnchorPane pane =new AnchorPane();
         Shape shape = new Rectangle(1080, 720, Color.BLACK);
 
-        var text = FXGL.getUIFactoryService().newText("STAGE" + geti("level"), Color.WHITE, 40);
+        var text = FXGL.getUIFactoryService().newText("STAGE " + geti("level"), Color.WHITE, 40);
         text.setTranslateX((SCREEN_WIDTH >> 1) - 80);
         text.setTranslateY((SCREEN_HEIGHT >> 1) - 20);
         pane.getChildren().addAll(shape, text);

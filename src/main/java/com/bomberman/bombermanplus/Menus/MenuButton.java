@@ -10,14 +10,14 @@ public class MenuButton extends Parent {
     Text text;
 
     public MenuButton(String name, int size, Runnable action){
-        text = FXGL.getUIFactoryService().newText(name, Color.WHITE, size);
+        text = FXGL.getUIFactoryService().newText(name, Color.BLACK, size);
         text.setStrokeWidth(1.5);
         text.strokeProperty().bind(text.fillProperty());
 
         text.fillProperty().bind(
                 Bindings.when(hoverProperty())
                         .then(Color.BLUE)
-                        .otherwise(Color.WHITE)
+                        .otherwise(Color.BLACK)
         );
 
         setOnMouseClicked(e -> action.run());
