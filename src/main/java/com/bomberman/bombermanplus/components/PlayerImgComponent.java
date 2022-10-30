@@ -15,7 +15,7 @@ import static com.bomberman.bombermanplus.Config.SIZE_FRAME;
 
 public class PlayerImgComponent  extends Component {
 
-    private Skin defaultSkin = Skin.CHAR2;
+    private Skin defaultSkin = Skin.CHAR3;
     private AnimatedTexture texture;
     private AnimationChannel aniIdleDown, aniIdleRight, aniIdleUp, aniIdleLeft;
     private AnimationChannel aniWalkDown, aniWalkRight, aniWalkUp, aniWalkLeft;
@@ -138,6 +138,34 @@ public class PlayerImgComponent  extends Component {
             aniWalkUp = new AnimationChannel(image("char2.png"), 8,
                     SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
                     22, 23);
+        } else if (skin == Skin.CHAR3) {
+            aniIdleDown = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    0, 0);
+            aniIdleRight = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    10, 10);
+            aniIdleLeft = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    30, 30);
+            aniIdleUp = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    20, 20);
+
+            aniWalkDown = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    0, 2);
+            aniWalkRight = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    10, 12);
+            aniWalkLeft = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    30, 32);
+            aniWalkUp = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(ANIM_TIME_PlAYER),
+                    20, 22);
+            aniDie = new AnimationChannel(image("char3.png"), 10,
+                    SIZE_FRAME, SIZE_FRAME, Duration.seconds(1), 40, 49);
         }
     }
 
