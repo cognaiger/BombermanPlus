@@ -71,7 +71,7 @@ public class BombermanApp extends GameApplication {
         settings.setWidth(SCREEN_WIDTH);
         settings.setTitle(TITLE);
         settings.setVersion(VERSION);
-        settings.setIntroEnabled(false);
+        settings.setIntroEnabled(true);
         settings.setMainMenuEnabled(true);
         settings.setGameMenuEnabled(true);
         settings.setPreserveResizeRatio(true);

@@ -16,8 +16,7 @@
 3. [UML-class-diagram](#UML-class-diagram)
 4. [Features](#Features)
 5. [Challenges](#Challenges)
-6. [Acknowledgments](#Acknowledgments)
-7. [References](#References)
+6. [References](#References)
 <!-- <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -34,7 +33,6 @@
     <li><a href="#uml-class-diagram">UML Class Diagram</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#challenges">Challenges</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
     <li><a href="#references">References</a></li>
   </ol>
 </details> -->
@@ -53,10 +51,10 @@ This is our game project for our Object-Oriented Programming course. Bomberman i
 
 ### Team Members :couplekiss_man_man:
 
-| Order |      Name       |     MSV     |           Email            |                       Github account                        |
-| :---: |:---------------:|:-----------:|:--------------------------:|:-----------------------------------------------------------:|
-|   1   | Truong Gia Ngoc |  21020369   |  ngoctruonggia@gmail.com   |          [cognaiger](https://github.com/cognaiger)           |
-|   2   | Pham Gia Phong  | ITITIU20165 | hoangbao15082002@gmail.com | [Mr@JEY](https://github.com/PhanNguyenHoangBao-ITITIU20165) |
+| Order |      Name       |   MSV    |             Email             |              Github account               |
+| :---: |:---------------:|:--------:|:-----------------------------:|:-----------------------------------------:|
+|   1   | Truong Gia Ngoc | 21020369 |    ngoctruonggia@gmail.com    | [cognaiger](https://github.com/cognaiger) |
+|   2   | Pham Gia Phong  | 21020128 | phamgiaphong8122003@gmail.com | [GPhong812](https://github.com/GPhong812) |
 
 ### Motivation :mechanical_arm:
 
@@ -120,63 +118,22 @@ Players will direct the character's movement in order to place bombs to killing 
 <!-- ![](UML_Diagrams/Control.jpeg) -->
 
 <div>
-	<h3>1. CONTROL</h3>
+	<h3>1. Component </h3>
     <div align="center">
-        <img src="UML_Diagrams/Control.png" alt="">
+        <img src="src/main/resources/ComponentUML.png" alt="">
     </div>
-    <br />
-	<div align="center">------------------------------------</div>
-    <br />
-	<h3>2. ENTITY</h3>
-    <h4>a) Animal</h4>
+    <h3>2. Enemy </h3>
     <div align="center">
-        <img src="UML_Diagrams/Animal.png" alt="">
+        <img src="src/main/resources/EnemyUML.png" alt="">
     </div>
-    <h4>b) Intelligent with "Doll" enemy</h4>
+	<h3>3. HUD </h3>
     <div align="center">
-        <img src="UML_Diagrams/Intelligent_Doll.png" alt="">
+        <img src="src/main/resources/HUDUML.png" alt="">
     </div>
-    <h4>c) Block</h4>
+	<h3>4. Menu </h3>
     <div align="center">
-        <img src="UML_Diagrams/Block.png" alt="">
+        <img src="src/main/resources/MenuUML.png" alt="">
     </div>
-    <h4>d) Items</h4>
-    <div align="center">
-        <img src="UML_Diagrams/Items.png" alt="">
-    </div>
-    <h4>e) Items with Entity</h4>
-    <div align="center">
-        <img src="UML_Diagrams/Items_Entity.png" alt="">
-    </div>
-    <h4>f) Animal with Entity</h4>
-    <div align="center">
-        <img src="UML_Diagrams/Animal_Entity.png" alt="">
-    </div>
-	<div align="center">------------------------------------</div>
-	<h3>3. FEATURES</h3>
-    <div align="center">
-        <img src="UML_Diagrams/Features.png" alt="">
-    </div>
-    <br />
-	<div align="center">------------------------------------</div>
-	<h3>4. GAMERUNNER</h3>
-    <div align="center">
-        <img src="UML_Diagrams/GameRunner.png" alt="">
-    </div>
-    <br />
-	<div align="center">------------------------------------</div>
-	<h3>5. GRAPHICS</h3>
-    <div align="center">
-        <img src="UML_Diagrams/Graphics.png" alt="">
-    </div>
-    <br />
-	<div align="center">------------------------------------</div>
-	<h3>6. LEVELS</h3>
-    <div align="center">
-        <img src="UML_Diagrams/Levels.png" alt="">
-    </div>
-    <br />
-    <div align="center">------------------------------------</div>
 </div>
 
 <br />
